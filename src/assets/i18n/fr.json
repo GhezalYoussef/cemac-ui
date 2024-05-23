@@ -1,0 +1,33 @@
+{
+  "primeng": {
+    "emptyMessage": "Coucou",
+    "emptyFilterMessage": "ReCoucou",
+    "dayNames": ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+    "dayNamesShort": ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+    "dayNamesMin": ["D", "L", "M", "M", "J", "V", "S"],
+    "monthNames": ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+    "monthNamesShort": ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"],
+    "today": "Aujourd'hui",
+    "weekHeader": "Wk",
+    "weak": "Weak",
+    "addRule": "ajouter une règle",
+    "removeRule": "supprimer la règle",
+    "matchAll": "\"Match\" toutes les règles",
+    "matchAny": "\"Match\" n'importe quelle règle",
+    "startsWith": "commence par",
+    "endsWith": "se termine par",
+    "contains": "contient",
+    "notContains": "ne contient pas",
+    "equals": "égal",
+    "notEquals": "différent",
+    "noFilter": "aucun filtre",
+    "apply": "Appliquer",
+    "clear": "Effacer"
+  },
+  "i18n": {
+    "demo": {
+      "title": "Démonstration de traduction",
+      "text": "Ceci est une démonstration simple avec"
+    }
+  }
+}

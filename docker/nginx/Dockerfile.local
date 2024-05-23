@@ -1,0 +1,23 @@
+FROM registry-docker.apps.eul.sncf.fr/hub/nginx:1.25-alpine
+
+USER root
+
+# Configuration NGINX
+# - activation de la compression GZIP (level compression : 4)
+COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
+
+# - port 8080 : port non root
+# - try_files : redirige les routes Angular (URLs du front) vers la page index.html
+# - configuration de l'entête Cache-Control (pour index.html et pour les ressources statiques)
+# - configuration de l'entête Content-Security-Policy (CSP) : ajout d'un nonce
+# - configuration de l'entête X-XSS-Protection
+# - ajout d'un bloc 'Location' pour les URLs vers le backend (à configurer lorsque NGINX est utilisé comme reverse proxy)
+COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Copie les fichiers de l'application
+WORKDIR /usr/share/nginx/html/
+COPY /dist/front-ng /usr/share/nginx/html/
+
+USER nginx
+
+EXPOSE 8080

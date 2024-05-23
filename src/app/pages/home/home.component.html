@@ -1,0 +1,19 @@
+<cd-pageTitle keyValue="pageTitle.home"></cd-pageTitle>
+
+<cd-sillon class="accueil" title="VOTRE APPLICATION" bgColor="var(--cd-body-bg-color)" [rtl]="true" 
+  insideBgColor="var(--cd-primary-color)" insideSecondaryBgColor="color-mix(in srgb, var(--cd-primary-color), transparent 50%)" 
+  increaseTopCorner="30%" increaseBottomCorner="50%" 
+  topTriangleHeight="10vh" bottomTriangleHeight="38vh" 
+  sillonWidth="65%">
+
+  <ng-template #iconTemplate>
+    <fa-icon [icon]="faCheck"></fa-icon>
+  </ng-template>
+
+  <div class="uppercase">a démarré avec succès.</div>
+
+  <ng-template #bottomTriangleTemplate>
+    Ce composant peut à présent être modifié ou supprimé.
+  </ng-template>
+
+</cd-sillon>

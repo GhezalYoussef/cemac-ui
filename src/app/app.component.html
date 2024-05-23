@@ -1,0 +1,35 @@
+<div id="superglobal">
+  <div id="global">
+
+    <div class="grid grid-nogutter align-items-center" id="header">
+      <div class="col-6 lg:col-6">
+        <div class="grid grid-nogutter align-items-center">
+          <div class="col-fixed">
+            <cd-mobileMenuButton></cd-mobileMenuButton>
+            <div id="header-logo">
+              <span class="ShowOnDesktop"></span>
+            </div>
+          </div>
+          <div class="col">
+            <cd-headerTitle id="header-title"></cd-headerTitle>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 lg:col-6">
+        <app-topmenu></app-topmenu>
+      </div>
+    </div>
+    <app-menubar></app-menubar>
+    <div id="layout-portlets-cover">
+      <p-toast></p-toast>
+      <cd-routeLoader></cd-routeLoader>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <cd-footer>
+    <ng-template #primaryList>
+      <app-footer-primary-list></app-footer-primary-list>
+    </ng-template>
+  </cd-footer>
+</div>

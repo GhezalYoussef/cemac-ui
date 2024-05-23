@@ -1,0 +1,28 @@
+import { Component, OnInit, inject } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { TemplateModule } from "@tec/condor/components";
+import { PrimeNGConfig } from "primeng/api";
+import { ToastModule } from "primeng/toast";
+import { FooterPrimaryListComponent } from "./components/template/footerprimarylist/footerprimarylist.component";
+import { AppMenubarComponent } from "./components/template/menubar/menubar.component";
+import { AppTopMenuComponent } from "./components/template/topmenu/topmenu.component";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: "./app.component.html",
+  standalone: true,
+  imports: [RouterOutlet, TemplateModule, AppTopMenuComponent, AppMenubarComponent, FooterPrimaryListComponent, ToastModule],
+})
+export class AppComponent implements OnInit {
+
+  primengConfig = inject(PrimeNGConfig);
+
+  translateService = inject(TranslateService);
+
+  ngOnInit() {
+    this.translateService.get("primeng").subscribe((res) => this.primengConfig.setTranslation(res));
+    this.primengConfig.ripple = true;
+  }
+
+}

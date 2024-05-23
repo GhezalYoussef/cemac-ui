@@ -1,0 +1,8 @@
+version: 1
+type: npm
+resolver:
+    repo: npm_90102
+    serverId: eul
+deployer:
+    repo: npm_90102_dev
+    serverId: eul

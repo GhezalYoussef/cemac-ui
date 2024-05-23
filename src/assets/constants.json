@@ -1,0 +1,13 @@
+{
+    "appName": "Titre de votre application",
+    "appVersion": "1.0.0",
+    "blank.page.title": "PAGE VIERGE",
+    "logout.page.title": "FIN DE CONNEXION",
+    "logout.page.msg": "Vous n'êtes actuellement plus connecté à l'application",
+    "notfound.page.msg": "Page non trouvée.",
+    "linkConnection": "Connexion",
+    "msgErrorPage": "Une erreur est survenue.",
+    "pageTitle.home" : "Accueil",
+    "oidc.token.name.prefix": "myapp",
+    "showMobileMenuOnDesktop": "false"
+}
