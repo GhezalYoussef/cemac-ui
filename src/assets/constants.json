@@ -9,5 +9,6 @@
     "msgErrorPage": "Une erreur est survenue.",
     "pageTitle.home" : "Accueil",
     "oidc.token.name.prefix": "myapp",
-    "showMobileMenuOnDesktop": "false"
+    "showMobileMenuOnDesktop": "false",
+    "serverUrl": ""
 }
