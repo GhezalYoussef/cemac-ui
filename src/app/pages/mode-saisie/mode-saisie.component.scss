@@ -1,0 +1,27 @@
+.disabled-div {
+  opacity: 0.5; /* Réduit l'opacité pour indiquer que la div est désactivée */
+  pointer-events: none; /* Empêche les interactions de souris avec la div */
+}
+
+:host::ng-deep .p-breadcrumb ul li:last-child .p-menuitem-text {
+  color: #0289ce;
+  font-size: 25px;
+}
+
+:host::ng-deep .p-inputgroup p-autoComplete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host::ng-deep .p-inputgroup p-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host::ng-deep .p-inputgroup p-multiSelect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

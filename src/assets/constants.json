@@ -8,6 +8,8 @@
     "linkConnection": "Connexion",
     "msgErrorPage": "Une erreur est survenue.",
     "pageTitle.home" : "Accueil",
+    "pageTitle.saisie": "Saisie",
+    "pageTitle.analyse": "Analyse",
     "oidc.token.name.prefix": "myapp",
     "showMobileMenuOnDesktop": "false",
     "serverUrl": ""

@@ -1,1 +1,199 @@
-<p>mode-saisie works!</p>
+<cd-pageTitle keyValue="pageTitle.saisie"></cd-pageTitle>
+<div class="grid">
+    <div class="col-12 lg:col-12">
+            <form [formGroup]="formSaisie">
+                <div class="grid align-items-center">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Ligne">
+                            <div class="grid align-items-center">
+                                <div class="col-12 lg:col-6">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Type ligne</label>
+                                        </span>
+                                        <p-dropdown
+                                                formControlName="typeLigne"
+                                                [options]="typeLigneList"
+                                                placeholder="Selectionner le type ligne">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Panto">
+                            <div class="grid">
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre panto min</label>
+                                        </span>
+                                        <p-inputNumber
+                                            formControlName="nbrPantoMin"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre panto max</label>
+                                        </span>
+                                        <p-inputNumber
+                                            formControlName="nbrPantoMax"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Vitesse">
+                            <div class="grid">
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Vitesse min</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="vitesseMin"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>vitesse max</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="vitesseMax"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Maintenance">
+                            <div class="grid">
+                                <div class="col-12 lg:col-6">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Catégorie de maintenance</label>
+                                        </span>
+                                        <input pInputText readonly formControlName="categorieMaintenance"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Installation">
+                            <div class="grid">
+                                <div class="col-12 lg:col-6">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Type Installation / Tension</label>
+                                        </span>
+                                        <p-dropdown
+                                                formControlName="typeInstallationTension"
+                                                [options]="typeInstallationTensionList"
+                                                placeholder="Selectionner le type ligne">
+                                        </p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <p-panel header="Opération">
+                            <div class="grid">
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre ML</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="nombreML"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre IS</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="nombreIS"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre AIG</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="nombreAIG"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre AT</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="nombreAT"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                                <div class="col-12 lg:col-4">
+                                    <div class="p-inputgroup">
+                                        <span class="p-inputgroup-addon">
+                                            <label>Nombre IA</label>
+                                        </span>
+                                        <p-inputNumber
+                                                formControlName="nombreIA"
+                                                [showButtons]="true"
+                                                [min]="0">
+                                        </p-inputNumber>
+                                    </div>
+                                </div>
+                            </div>
+                        </p-panel>
+                    </div>
+                </div>
+                <div class="grid" class="TexAlRight spaced">
+                    <p-button label="Sauvegarder"></p-button>
+                    <p-button label="Annuler" styleClass="p-button-secondary"></p-button>
+                </div>
+            </form>
+    </div>
+</div>
