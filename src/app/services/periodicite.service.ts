@@ -2,7 +2,11 @@ import {HttpClient} from "@angular/common/http";
 import {ConstantService} from "@tec/condor/services";
 import {Periodicite} from "../models/periodicite.model";
 import {Observable} from "rxjs";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+    providedIn: 'root'
+})
 export class PeriodiciteService {
     private serverUrl: string;
 
