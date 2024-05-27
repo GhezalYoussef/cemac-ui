@@ -18,7 +18,6 @@ import {
 import {ActivatedRoute, Router} from "@angular/router";
 import {ELigne} from "../../models/enum/ELigne.enum";
 import {InputTextModule} from "primeng/inputtext";
-import {ETension} from "../../models/enum/ETension.enum";
 import {CategorieMaintenance} from "../../models/categorie-maintenance.model";
 import {CategorieMaintenanceService} from "../../services/categorie-maintenance.service";
 import {StyleClassModule} from "primeng/styleclass";
