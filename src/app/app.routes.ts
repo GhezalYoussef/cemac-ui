@@ -1,11 +1,15 @@
 import { Routes } from '@angular/router';
 import {ModeAnalyseComponent} from "./pages/mode-analyse/mode-analyse.component";
 import {ModeSaisieComponent} from "./pages/mode-saisie/mode-saisie.component";
+import {ListRequetesComponent} from "./pages/list-requetes/list-requetes.component";
+import {AdministrationComponent} from "./pages/administration/administration.component";
 
 export const APP_ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'analyse', component : ModeAnalyseComponent },
+  { path: 'requetes', component : ListRequetesComponent },
   { path: 'saisie', component : ModeSaisieComponent },
+  { path: 'analyse', component : ModeAnalyseComponent },
+  { path: 'administration', component : AdministrationComponent },
   { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent) },
   { path: "autologin", loadChildren: () => import("@tec/condor/services").then((m) => m.AutoLoginModule) },
   { path: 'logout', loadComponent: () => import('@tec/condor/pages').then(c => c.LogoutComponent) },

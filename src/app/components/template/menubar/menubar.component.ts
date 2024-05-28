@@ -26,15 +26,25 @@ export class AppMenubarComponent extends CdBaseMenubarComponent implements OnIni
       routerLink: "home",
     },
     {
+      label: "List requête",
+      icon: "pi pi-bars",
+      routerLink: "requetes",
+    },
+    {
       label: "Saisie",
-      icon: "pi pi-home",
+      icon: "pi pi-pencil",
       routerLink: "saisie",
     },
     {
       label: "Analyse",
-      icon: "pi pi-home",
+      icon: "pi pi-tag",
       routerLink: "analyse",
     },
+    {
+      label: "Administration",
+      icon: "pi pi-cog",
+      routerLink: "administration"
+    }
   ];
 
   getItems() {

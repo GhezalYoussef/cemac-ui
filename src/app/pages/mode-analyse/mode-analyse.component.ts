@@ -7,6 +7,10 @@ import {DropdownModule} from "primeng/dropdown";
 import {MultiSelectModule} from "primeng/multiselect";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {ButtonModule} from "primeng/button";
+import {PaginatorModule} from "primeng/paginator";
+import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-mode-analyse',
@@ -19,11 +23,26 @@ import {ButtonModule} from "primeng/button";
     DropdownModule,
     MultiSelectModule,
     ToggleButtonModule,
-    ButtonModule
+    ButtonModule,
+    PaginatorModule,
+    ReactiveFormsModule
   ],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
 })
 export class ModeAnalyseComponent {
+
+  formAnalyse ?: FormGroup;
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router,
+              private messageService: MessageService) {
+
+    this.formAnalyse = this.formBuilder.group({
+
+    });
+  }
+
+
 
 }
