@@ -1,199 +1,199 @@
 <cd-pageTitle keyValue="pageTitle.saisie"></cd-pageTitle>
 <div class="grid">
     <div class="col-12 lg:col-12">
-            <form [formGroup]="formSaisie">
-                <div class="grid align-items-center">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Ligne">
-                            <div class="grid align-items-center">
-                                <div class="col-12 lg:col-6">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Type ligne</label>
-                                        </span>
-                                        <p-dropdown
-                                                formControlName="typeLigne"
-                                                [options]="typeLigneList"
-                                                placeholder="Selectionner le type ligne"
-                                                (onChange)="getCategorieMaintenance()">
-                                        </p-dropdown>
-                                    </div>
+        <form [formGroup]="formSaisie">
+            <div class="grid align-items-center">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Ligne">
+                        <div class="grid align-items-center">
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Type ligne</label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="typeLigne"
+                                            [options]="typeLigneList"
+                                            placeholder="Selectionner le type ligne"
+                                            (onChange)="getCategorieMaintenance()">
+                                    </p-dropdown>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
+                        </div>
+                    </p-panel>
                 </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Panto">
-                            <div class="grid">
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre panto</label>
-                                        </span>
-                                        <p-inputNumber
-                                            formControlName="nbrPanto"
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Panto">
+                        <div class="grid">
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre panto</label>
+                                    </span>
+                                    <p-inputNumber
+                                        formControlName="nbrPanto"
+                                        [showButtons]="true"
+                                        [min]="0"
+                                        (ngModelChange)="getCategorieMaintenance()"
+                                    >
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Vitesse">
+                        <div class="grid">
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Vitesse</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="vitesse"
                                             [showButtons]="true"
                                             [min]="0"
                                             (ngModelChange)="getCategorieMaintenance()"
-                                        >
-                                        </p-inputNumber>
-                                    </div>
+                                    >
+                                    </p-inputNumber>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
+                        </div>
+                    </p-panel>
                 </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Vitesse">
-                            <div class="grid">
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Vitesse</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="vitesse"
-                                                [showButtons]="true"
-                                                [min]="0"
-                                                (ngModelChange)="getCategorieMaintenance()"
-                                        >
-                                        </p-inputNumber>
-                                    </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Maintenance">
+                        <div class="grid">
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Catégorie de maintenance</label>
+                                    </span>
+                                    <input pInputText readonly formControlName="categorieMaintenance"/>
+                                </div>
+                                <p-message severity="error"
+                                           text="La categorie de maintenance est obligatoir."
+                                           *ngIf="!f.categorieMaintenance.valid">
+                                </p-message>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Installation">
+                        <div class="grid">
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Famille Installation / Tension</label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="FamilleInstallationTension"
+                                            [options]="familleCatenaireInstallationList"
+                                            (onChange)="getCatenaireByFamille()"
+                                            optionLabel="libelle"
+                                            placeholder="Selectionner la famille de la catenaire">
+                                    </p-dropdown>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Maintenance">
-                            <div class="grid">
-                                <div class="col-12 lg:col-6">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Catégorie de maintenance</label>
-                                        </span>
-                                        <input pInputText readonly formControlName="categorieMaintenance"/>
-                                    </div>
-                                    <p-message severity="error"
-                                               text="La categorie de maintenance est obligatoir."
-                                               *ngIf="!f.categorieMaintenance.valid">
-                                    </p-message>
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Type Installation / Tension</label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="typeInstallationTension"
+                                            [options]="catenaireInstallationListFilter"
+                                            optionLabel="libelle"
+                                            placeholder="Selectionner le catenaire de l'intsallation">
+                                    </p-dropdown>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
+                        </div>
+                    </p-panel>
                 </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Installation">
-                            <div class="grid">
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Famille Installation / Tension</label>
-                                        </span>
-                                        <p-dropdown
-                                                formControlName="FamilleInstallationTension"
-                                                [options]="familleCatenaireInstallationList"
-                                                (onChange)="getCatenaireByFamille()"
-                                                optionLabel="libelle"
-                                                placeholder="Selectionner la famille de la catenaire">
-                                        </p-dropdown>
-                                    </div>
-                                </div>
-                                <div class="col-12 lg:col-6">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Type Installation / Tension</label>
-                                        </span>
-                                        <p-dropdown
-                                                formControlName="typeInstallationTension"
-                                                [options]="catenaireInstallationListFilter"
-                                                optionLabel="libelle"
-                                                placeholder="Selectionner le catenaire de l'intsallation">
-                                        </p-dropdown>
-                                    </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Opération">
+                        <div class="grid">
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre ML</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="nombreML"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
-                        <p-panel header="Opération">
-                            <div class="grid">
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre ML</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="nombreML"
-                                                [showButtons]="true"
-                                                [min]="0">
-                                        </p-inputNumber>
-                                    </div>
-                                </div>
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre IS</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="nombreIS"
-                                                [showButtons]="true"
-                                                [min]="0">
-                                        </p-inputNumber>
-                                    </div>
-                                </div>
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre AIG</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="nombreAIG"
-                                                [showButtons]="true"
-                                                [min]="0">
-                                        </p-inputNumber>
-                                    </div>
-                                </div>
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre AT</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="nombreAT"
-                                                [showButtons]="true"
-                                                [min]="0">
-                                        </p-inputNumber>
-                                    </div>
-                                </div>
-                                <div class="col-12 lg:col-4">
-                                    <div class="p-inputgroup">
-                                        <span class="p-inputgroup-addon">
-                                            <label>Nombre IA</label>
-                                        </span>
-                                        <p-inputNumber
-                                                formControlName="nombreIA"
-                                                [showButtons]="true"
-                                                [min]="0">
-                                        </p-inputNumber>
-                                    </div>
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre IS</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="nombreIS"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
-                        </p-panel>
-                    </div>
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre AIG</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="nombreAIG"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre AT</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="nombreAT"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                            <div class="col-12 lg:col-4">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Nombre IA</label>
+                                    </span>
+                                    <p-inputNumber
+                                            formControlName="nombreIA"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                        </div>
+                    </p-panel>
                 </div>
-                <div class="grid" class="TexAlRight spaced">
-                    <p-button label="Sauvegarder"></p-button>
-                    <p-button label="Annuler" styleClass="p-button-secondary"></p-button>
-                </div>
-            </form>
+            </div>
+            <div class="grid" class="TexAlRight spaced">
+                <p-button label="Sauvegarder"></p-button>
+                <p-button label="Annuler" styleClass="p-button-secondary"></p-button>
+            </div>
+        </form>
     </div>
 </div>
