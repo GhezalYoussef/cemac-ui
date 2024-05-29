@@ -191,9 +191,17 @@
                 </div>
             </div>
             <div class="grid" class="TexAlRight spaced">
-                <p-button label="Sauvegarder"></p-button>
-                <p-button label="Annuler" styleClass="p-button-secondary"></p-button>
+                <p-button label="Sauvegarder" (onClick)="onClickSave(false)" styleClass="p-button-primary"></p-button>
+                <p-button label="Analyse" (onClick)="onClickSave(true)" styleClass="p-button-warning"></p-button>
             </div>
         </form>
     </div>
 </div>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>
+<p-toast key="top"></p-toast>
+<p-confirmDialog header="Confirmation" icon="pi fas fa-hand-point-right" acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light" acceptLabel="Oui" rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>
