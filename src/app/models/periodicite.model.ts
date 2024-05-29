@@ -7,10 +7,10 @@ export interface Periodicite{
 
     id:number;
     catenaires:Catenaire[];
-    categorieOperation:String;
-    sousCategorieOperation:String;
-    libelle:String;
-    sousOperation:String;
+    categorieOperation:string;
+    sousCategorieOperation:string;
+    libelle:string;
+    sousOperation:string;
     typeLigne:ELigne;
     tension:ELigne;
     categorieMaintenance:ECategorie;

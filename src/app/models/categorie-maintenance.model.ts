@@ -8,5 +8,5 @@ export interface CategorieMaintenance {
     pantoMax:number;
     vitesseMin:number;
     viteeseMax:number;
-    categorie:string;
+    categorieMaintenance:string;
 }

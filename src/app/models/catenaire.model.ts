@@ -5,6 +5,6 @@ export interface Catenaire{
     id:number;
     familleCatenaire:number;
     periodicites:Periodicite[];
-    libelle:String;
+    libelle:string;
 
 }

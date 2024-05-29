@@ -119,7 +119,7 @@ export class ModeSaisieComponent implements OnInit {
 
                 if (!uniqueCategories.has(uniqueKey)) {
                     uniqueCategories.add(uniqueKey);
-                    foundCategory = categorieMaintenance.categorie;
+                    foundCategory = categorieMaintenance.categorieMaintenance;
                     break; // Sortir de la boucle dès qu'une catégorie valide est trouvée
                 }
             }
