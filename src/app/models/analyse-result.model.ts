@@ -6,6 +6,7 @@ export interface AnalyseResult {
     categorie:string;
     sousCategorie:string;
     operation:string;
+    sousOperation:string;
     categorieMaintenance:string;
     uop:number;
     cout:number;

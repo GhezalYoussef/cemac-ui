@@ -1,91 +1,62 @@
-<cd-pageTitle keyValue="pageTitle.analyse"></cd-pageTitle>
+<cd-pageTitle keyValue="pageTitle.analyse" styleClass="sncf-default-color" ></cd-pageTitle>
 <div class="grid">
-    <form [formGroup]="formAnalyse">
-        <div class="col-12 lg:col-12">
-         <p-panel>
-            <div class="grid">
-                <div class="col-12 lg:col-12">
-                    <div class="grid">
-                        <div class="col-12 lg:col-1">
-                            <span class="p-inputgroup-addon">
-                                <label>RÉFÉRENCE</label>
+    <div class="col-12 lg:col-12">
+        <p-panel [showHeader]="false">
+            <p-panel header="Liste des resultats">
+                <div class="grid" style="margin-bottom: 10px">
+                    <div class="col-12 lg:col-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon" style="color: #ffffff;background-color: #b081f2">
+                                {{requete ?'REF_' + requete.requeteRef : 'REF'}}
                             </span>
-                        </div>
-                        <div class="col-12 lg:col-1">
-                              <span class="p-inputgroup-addon">
-                                  <label>CATÉGORIE</label>
-                              </span>
-                        </div>
-                        <div class="col-12 lg:col-1">
-                            <span class="p-inputgroup-addon">
-                                <label>CATÉGORIE</label>
+                            <span class="p-inputgroup-addon" style="color: #ffffff;background-color: #bb6ba8">
+                                REQUÊTE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
                             </span>
-                        </div>
-                        <div class="col-12 lg:col-3">
-                              <span class="p-inputgroup-addon">
-                                  <label>OPÉRATION</label>
-                              </span>
-                        </div>
-                        <div class="col-12 lg:col-2">
-                              <span class="p-inputgroup-addon">
-                                  <label>SOUS OPÉRATION</label>
-                              </span>
-                        </div>
-                        <div class="col-12 lg:col-1">
-                            <span class="p-inputgroup-addon">
-                                <label>UOP</label>
-                            </span>
-                        </div>
-                        <div class="col-12 lg:col-1">
-                              <span class="p-inputgroup-addon">
-                                  <label>COUT</label>
-                              </span>
                         </div>
                     </div>
                 </div>
-            </div>
-                <div class="grid" formArrayName="analyseArray">
-                    <div class="col-12 lg:col-12" *ngFor="let signal of getControls(); let i = index">
-                        <div class="grid" [formGroupName]="i">
-                            <div class="col-12 lg:col-1">
-                                <div class="p-inputgroup">
-                                    <input readonly formControlName="refResult" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-1">
-                                <div class="p-inputgroup">
-                                    <input readonly formControlName="categorie" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-1">
-                                <div class="p-inputgroup">
-                                    <input readonly formControlName="sousCategorie" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-3">
-                                <div class="p-inputgroup">
-                                    <input readonly formControlName="operation" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-2">
-                                <div class="p-inputgroup">
-                                    <input readonly formControlName="sousOperation" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-1">
-                                <div class="p-inputgroup">
-                                    <input readonlyformControlName="nbrUOP" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
-                            <div class="col-12 lg:col-1">
-                                <div class="p-inputgroup">
-                                    <input formControlName="cout" pInputText class="TexAlLeft">
-                                </div>
-                            </div>
+                <div class="grid" style="margin-bottom: 10px">
+                    <div class="col-12 lg:col-12">
+                        <div class="pastille">
+                            <p-table [value]="analyseResultList"
+                                     sortMode="multiple"
+                                     [paginator]="true"
+                                     [rows]="10"
+                                     [rowsPerPageOptions]="[5,10,20]"
+                                     selectionMode="single"
+                                     [(selection)]="selectedResult"
+                                     responsiveLayout="scroll"
+                                     dataKey="refResult">
+                                <ng-template pTemplate="header">
+                                    <tr style="font-size: x-small">
+                                        <th>Réf</th>
+                                        <th>CATÉGORIE</th>
+                                        <th>SOUS CATÉGORIE</th>
+                                        <th>OPÉRATION</th>
+                                        <th>SOUS OPÉRATION</th>
+                                        <th>CATÉGORIE MAINTENANCE</th>
+                                        <th>UOP</th>
+                                        <th>COUT</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-result let-expanded="expanded">
+                                    <tr [pSelectableRow]="result" style="font-size: small;">
+                                        <td>{{result.refResult}}</td>
+                                        <td>{{result.categorie}}</td>
+                                        <td>{{result.sousCategorie}}</td>
+                                        <td>{{result.operation}}</td>
+                                        <td>{{result.sousOperation}}</td>
+                                        <td>{{result.categorieMaintenance}}</td>
+                                        <td>{{result.uop}}</td>
+                                        <td>{{result.cout}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
                     </div>
                 </div>
+            </p-panel>
         </p-panel>
     </div>
-    </form>
 </div>
+

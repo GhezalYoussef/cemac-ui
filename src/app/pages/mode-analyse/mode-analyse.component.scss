@@ -1,0 +1,22 @@
+:host::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+  text-align: left;
+  border: 1px solid #ffffff;
+  border-width: 0px 0 0 0;
+  padding: 0.5rem 0.5rem;
+}
+
+:host::ng-deep .p-datatable .p-datatable-tbody>tr.p-highlight {
+  background: #eff6ff;
+}
+
+:host::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even).p-highlight {
+  background: #eff6ff;
+  color: #0289ce;
+}
+
+:host::ng-deep [_nghost-ksl-c140] .p-datatable .p-datatable-tbody > tr > td {
+  text-align: left;
+  border: 1px solid #da0d0d;
+  border-width: 0px 0 0 0;
+  padding: 0.5rem 0.5rem;
+}

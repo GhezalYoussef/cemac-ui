@@ -8,13 +8,16 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {ButtonModule} from "primeng/button";
 import {PaginatorModule} from "primeng/paginator";
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 import {MessageService} from "primeng/api";
-import {PeriodiciteService} from "../../services/periodicite.service";
-import {Periodicite} from "../../models/periodicite.model";
-import {NgForOf} from "@angular/common";
+import {DatePipe, NgForOf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
+import {SharedService} from "../../services/shared.service";
+import {mergeMap} from "rxjs";
+import {RequeteService} from "../../services/requete.service";
+import {Requete} from "../../models/requete";
+import {AnalyseResult} from "../../models/analyse-result.model";
+import {TableModule} from "primeng/table";
 
 @Component({
   selector: 'app-mode-analyse',
@@ -31,59 +34,45 @@ import {InputTextModule} from "primeng/inputtext";
         PaginatorModule,
         ReactiveFormsModule,
         NgForOf,
-        InputTextModule
+        InputTextModule,
+        TableModule,
+        DatePipe
     ],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
 })
 export class ModeAnalyseComponent implements OnInit {
 
-  formAnalyse ?: FormGroup;
-  periodiciteList : Periodicite[] = [];
+  public requete ?: Requete;
+  public analyseResultList ?: AnalyseResult[];
+  public selectedResult ?: AnalyseResult;
+  public RQDate = new Date();
 
-  constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router,
+
+  constructor(private requeteService:RequeteService,
               private messageService: MessageService,
-              private periodiciteService: PeriodiciteService) {
+              private sharedService:SharedService,) {
 
-    this.formAnalyse = this.formBuilder.group({
-      analyseArray: this.formBuilder.array([]),
-    });
   }
 
   ngOnInit() {
-      this.periodiciteService.findAll().subscribe(
-          periodiciteList => {
-              const seen = new Set();
-              this.periodiciteList = periodiciteList.filter(value => {
-                  const key = `${value.libelle}-${value.sousOperation}`;
-                  const duplicate = seen.has(key);
-                  seen.add(key);
-                  return !duplicate;
+      this.sharedService.requete$.pipe(
+          mergeMap(
+              requete => {
+                  return this.requeteService.analyseRequete(requete);
+              })
+      ).subscribe(res =>{
+          this.requete = res;
+          this.analyseResultList = res.analyseResultList;
+      },error => {
+          this.messageService.add(
+              {
+                  severity: 'error',
+                  summary: 'Analyse',
+                  detail: `Erreur lors de l'analyse ${error}}`,
+                  key: 'top'
               });
-              const analyseArray = this.formAnalyse.get('analyseArray') as FormArray;
-              this.periodiciteList.forEach(
-                  periodicite => {
-                    analyseArray.push(this.formBuilder.group(
-                        {
-                          id:[],
-                          refResult:[],
-                          sousCategorie:[periodicite.sousCategorieOperation],
-                          categorie:[periodicite.categorieOperation],
-                          operation:[periodicite.libelle],
-                          sousOperation:[periodicite.sousOperation],
-                          categorieMaintenance:[],
-                          nbrUOP:[0],
-                          cout:[0]
-                        }
-                    ))
-                  });
-          });
+      });
   }
-
-    getControls() {
-        return (this.formAnalyse.get('analyseArray') as FormArray).controls;
-    }
 
 }
