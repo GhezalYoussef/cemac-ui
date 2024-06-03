@@ -21,6 +21,7 @@ import {TableModule} from "primeng/table";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {MessageModule} from "primeng/message";
 import {ToastModule} from "primeng/toast";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-mode-analyse',
@@ -56,13 +57,15 @@ export class ModeAnalyseComponent implements OnInit {
   public RQDate = new Date();
 
 
-  constructor(private requeteService:RequeteService,
+  constructor(private titleService: Title,
+              private requeteService:RequeteService,
               private messageService: MessageService,
-              private sharedService:SharedService,) {
+              private sharedService:SharedService) {
 
   }
 
   ngOnInit() {
+      this.titleService.setTitle('Mode analyse');
       this.sharedService.requete$.pipe(
           mergeMap(
               requete => {

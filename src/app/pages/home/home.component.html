@@ -1,19 +1,56 @@
-<cd-pageTitle keyValue="pageTitle.home"></cd-pageTitle>
-
-<cd-sillon class="accueil" title="VOTRE APPLICATION" bgColor="var(--cd-body-bg-color)" [rtl]="true" 
-  insideBgColor="var(--cd-primary-color)" insideSecondaryBgColor="color-mix(in srgb, var(--cd-primary-color), transparent 50%)" 
-  increaseTopCorner="30%" increaseBottomCorner="50%" 
-  topTriangleHeight="10vh" bottomTriangleHeight="38vh" 
-  sillonWidth="65%">
-
-  <ng-template #iconTemplate>
-    <fa-icon [icon]="faCheck"></fa-icon>
-  </ng-template>
-
-  <div class="uppercase">a démarré avec succès.</div>
-
-  <ng-template #bottomTriangleTemplate>
-    Ce composant peut à présent être modifié ou supprimé.
-  </ng-template>
-
-</cd-sillon>
+<cd-pageTitle keyValue="pageTitle.home" styleClass="sncf-default-color" ></cd-pageTitle>
+<div class="card container">
+    <div class="flex align-items-center flex-wrap card-container justify-content-center" >
+        <div class="flex align-items-center justify-content-center mr-4">
+            <p-card header="Listes des requêtes" subheader=""
+                    [style]="{'width': '300px', 'min-height': '400px'}" styleClass="p-card-shadow">
+                <i [class]="'pi pi-bars fa-4x mt-3'"></i>
+                <p>
+                    Ce mode permet de gérer les requêtes.
+                </p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Accéder au mode gestion" icon="pi pi-bars" [routerLink]="['/requetes']"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+        <div class="flex align-items-center justify-content-center mr-4">
+            <p-card header="Mode saisie" subheader=""
+                    [style]="{'width': '300px', 'min-height': '400px'}" styleClass="p-card-shadow">
+                <i [class]="'pi pi-pencil fa-4x mt-3'"></i>
+                <p>
+                    Ce mode permet de générer les situations à analyser..
+                </p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Accéder au mode saisie" icon="pi pi-pencil"
+                              [routerLink]="['/saisie']"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+        <div class="flex align-items-center justify-content-center mr-4">
+            <p-card header="Mode analyse" subheader=""
+                    [style]="{'width': '300px', 'min-height': '400px'}" styleClass="p-card-shadow">
+                <i [class]="'pi pi-tag fa-4x mt-3'"></i>
+                <p>
+                    Ce mode permet d'analyser les différentes situations.
+                </p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Accéder au mode analyse" icon="pi pi-tag"
+                              [routerLink]="['/analyse']"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+        <div class="flex align-items-center justify-content-center mr-4">
+            <p-card header="Administration" subheader=""
+                    [style]="{'width': '300px', 'min-height': '400px'}" styleClass="p-card-shadow">
+                <i [class]="'pi pi-cog fa-4x mt-3'"></i>
+                <p>
+                    Ce mode permet de gérer les droits des utilisateurs.
+                </p>
+                <ng-template pTemplate="footer">
+                    <p-button label="Accéder au mode admin" icon="pi pi-cog"
+                              [routerLink]="['/administration']"></p-button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>

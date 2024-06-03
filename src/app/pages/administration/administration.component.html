@@ -1,1 +1,27 @@
-<cd-pageTitle keyValue="pageTitle.administration"></cd-pageTitle>
+<cd-pageTitle keyValue="pageTitle.administration" styleClass="sncf-default-color" ></cd-pageTitle>
+<div class="grid">
+    <div class="col sncf-warm-gray1-bg">
+        <p-tabView>
+            <p-tabPanel header="UTILISATEUR" leftIcon="icon-tab">
+            </p-tabPanel>
+            <p-tabPanel header="UTILISATEUR">
+                <app-admin-utilisateur></app-admin-utilisateur>
+            </p-tabPanel>
+            <p-tabPanel header="PROFIL">
+                <app-admin-profil></app-admin-profil>
+            </p-tabPanel>
+            <p-tabPanel header="CATENAIRE">
+                <app-admin-catenaire></app-admin-catenaire>
+            </p-tabPanel>
+            <p-tabPanel header="FAMILLE CATENAIRE">
+                <app-admin-famille-catenaire></app-admin-famille-catenaire>
+            </p-tabPanel>
+            <p-tabPanel header="PERIODICITE">
+                <app-admin-periodicite></app-admin-periodicite>
+            </p-tabPanel>
+            <p-tabPanel header="CATEGORIE MAINTENANCE">
+                <app-admin-categorie-maintenance></app-admin-categorie-maintenance>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
