@@ -9,7 +9,7 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 import {ButtonModule} from "primeng/button";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 import {DatePipe, NgForOf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
 import {SharedService} from "../../services/shared.service";
@@ -18,26 +18,33 @@ import {RequeteService} from "../../services/requete.service";
 import {Requete} from "../../models/requete";
 import {AnalyseResult} from "../../models/analyse-result.model";
 import {TableModule} from "primeng/table";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {MessageModule} from "primeng/message";
+import {ToastModule} from "primeng/toast";
 
 @Component({
   selector: 'app-mode-analyse',
   standalone: true,
-    imports: [
-        TemplateModule,
-        PanelModule,
-        InputNumberModule,
-        AutoCompleteModule,
-        DropdownModule,
-        MultiSelectModule,
-        ToggleButtonModule,
-        ButtonModule,
-        PaginatorModule,
-        ReactiveFormsModule,
-        NgForOf,
-        InputTextModule,
-        TableModule,
-        DatePipe
-    ],
+  imports: [
+      TemplateModule,
+      PanelModule,
+      InputNumberModule,
+      AutoCompleteModule,
+      DropdownModule,
+      MultiSelectModule,
+      ToggleButtonModule,
+      ButtonModule,
+      PaginatorModule,
+      ReactiveFormsModule,
+      NgForOf,
+      InputTextModule,
+      TableModule,
+      DatePipe,
+      ConfirmDialogModule,
+      MessageModule,
+      ToastModule
+  ],
+  providers: [ConfirmationService],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
 })
@@ -69,7 +76,7 @@ export class ModeAnalyseComponent implements OnInit {
               {
                   severity: 'error',
                   summary: 'Analyse',
-                  detail: `Erreur lors de l'analyse ${error}}`,
+                  detail: `Erreur lors de l'analyse.`,
                   key: 'top'
               });
       });

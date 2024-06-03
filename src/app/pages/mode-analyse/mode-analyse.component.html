@@ -3,32 +3,29 @@
     <div class="col-12 lg:col-12">
         <p-panel [showHeader]="false">
             <p-panel header="Liste des resultats">
-                <div class="grid" style="margin-bottom: 10px">
+                <div class="grid">
                     <div class="col-12 lg:col-4">
                         <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon" style="color: #ffffff;background-color: #b081f2">
+                            <span class="p-inputgroup-addon">
                                 {{requete ?'REF_' + requete.requeteRef : 'REF'}}
                             </span>
-                            <span class="p-inputgroup-addon" style="color: #ffffff;background-color: #bb6ba8">
+                            <span class="p-inputgroup-addon">
                                 REQUÊTE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="grid" style="margin-bottom: 10px">
+                <div class="grid">
                     <div class="col-12 lg:col-12">
                         <div class="pastille">
                             <p-table [value]="analyseResultList"
                                      sortMode="multiple"
-                                     [paginator]="true"
-                                     [rows]="10"
-                                     [rowsPerPageOptions]="[5,10,20]"
                                      selectionMode="single"
                                      [(selection)]="selectedResult"
                                      responsiveLayout="scroll"
                                      dataKey="refResult">
                                 <ng-template pTemplate="header">
-                                    <tr style="font-size: x-small">
+                                    <tr>
                                         <th>Réf</th>
                                         <th>CATÉGORIE</th>
                                         <th>SOUS CATÉGORIE</th>
@@ -40,7 +37,7 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-result let-expanded="expanded">
-                                    <tr [pSelectableRow]="result" style="font-size: small;">
+                                    <tr [pSelectableRow]="result">
                                         <td>{{result.refResult}}</td>
                                         <td>{{result.categorie}}</td>
                                         <td>{{result.sousCategorie}}</td>
@@ -59,4 +56,15 @@
         </p-panel>
     </div>
 </div>
+<!--<p-message key="global-messages"></p-message>-->
+<!--<p-message key="local-messages"></p-message>-->
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>
 

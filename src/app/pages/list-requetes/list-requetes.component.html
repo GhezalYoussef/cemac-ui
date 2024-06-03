@@ -1,1 +1,92 @@
-<cd-pageTitle keyValue="pageTitle.requetes"></cd-pageTitle>
+<cd-pageTitle keyValue="pageTitle.requetes" styleClass="sncf-default-color" ></cd-pageTitle>
+<div class="grid">
+    <div class="col-12 lg:col-12">
+        <p-panel [showHeader]="false">
+            <div class="grid" class="TexAlRight spaced">
+                <div class="col-12 lg:col-12">
+                    <p-button label="Nouvelle requête" icon="pi pi-plus" (onClick)="onClickAdd()"></p-button>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <div class="pastille">
+                        <p-table [value]="requeteList"
+                                 sortMode="multiple"
+                                 [paginator]="true"
+                                 [rows]="10"
+                                 [rowsPerPageOptions]="[5,10,20]"
+                                 styleClass="p-datatable-gridlines"
+                                 responsiveLayout="scroll">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th pSortableColumn="liblleVG">
+                                        Libellé
+                                        <p-columnFilter type="text" field="liblleVG" display="menu"></p-columnFilter>
+                                        <p-sortIcon field="liblleVG"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="dateModification">
+                                        Date de modification
+                                        <p-sortIcon field="dateModification"></p-sortIcon>
+                                    </th>
+                                    <th class="ui-p-5">Modificateur</th>
+                                    <th class="ui-p-5">Type ligne</th>
+                                    <th class="ui-p-5">Vitesse</th>
+                                    <th class="ui-p-5">Nbr panto</th>
+                                    <th class="ui-p-5">Categorie de maintenance</th>
+                                    <th class="ui-p-5">Type installation</th>
+                                    <th class="ui-p-5">Actions</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template let-requete pTemplate="body">
+                                <tr>
+                                    <td>
+                                        <div class="cell-inner">{{requete.requeteRef}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.dateModification}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.modificateur}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.typeLigne}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.vitesse}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.nbrPanto}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.categorieMaintenance}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="cell-inner">{{requete.typeInstallationTension}}</div>
+                                    </td>
+                                    <td>
+                                        <span class="p-buttonset">
+                                            <button pButton icon="pi pi-pencil" class="p-button-info" (click)="onClickUpdate(requete)"></button>
+                                            <button pButton icon="pi pi-chart-line" class="p-button-warning" (click)="onClickAnalyse(requete)"></button>
+                                            <button pButton icon="pi pi-times" class="p-button-danger" (click)="onClickDelete(requete)"></button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
+<!--<p-message key="global-messages"></p-message>-->
+<!--<p-message key="local-messages"></p-message>-->
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>

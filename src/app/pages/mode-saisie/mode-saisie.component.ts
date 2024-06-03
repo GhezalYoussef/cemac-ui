@@ -32,29 +32,31 @@ import {RequeteService} from "../../services/requete.service";
 import {NavigationService} from "../../services/navigation.service";
 import {ToastModule} from "primeng/toast";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {Title} from "@angular/platform-browser";
+import {SharedService} from "../../services/shared.service";
 
 @Component({
   selector: 'app-mode-saisie',
   standalone: true,
-    imports: [
-        CommonModule,
-        AutoCompleteModule,
-        ButtonModule,
-        DropdownModule,
-        InputNumberModule,
-        MultiSelectModule,
-        PanelModule,
-        SharedModule,
-        TemplateModule,
-        ToggleButtonModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        StyleClassModule,
-        MessageModule,
-        ToastModule,
-        ConfirmDialogModule
-    ],
-    providers: [ConfirmationService],
+  imports: [
+    CommonModule,
+    AutoCompleteModule,
+    ButtonModule,
+    DropdownModule,
+    InputNumberModule,
+    MultiSelectModule,
+    PanelModule,
+    SharedModule,
+    TemplateModule,
+    ToggleButtonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    StyleClassModule,
+    MessageModule,
+    ToastModule,
+    ConfirmDialogModule
+  ],
+  providers: [ConfirmationService],
   templateUrl: './mode-saisie.component.html',
   styleUrl: './mode-saisie.component.scss'
 })
@@ -68,24 +70,25 @@ export class ModeSaisieComponent implements OnInit {
     catenaireInstallationListFilter : Catenaire[] = [];
     public requete ?: Requete;
 
-    constructor(private formBuilder: FormBuilder,
-                private route: ActivatedRoute,
-                private router: Router,
+    constructor(
+                private titleService: Title,
+                private formBuilder: FormBuilder,
                 private messageService: MessageService,
                 private categorieMaintenanceService: CategorieMaintenanceService,
                 private catenaireService: CatenaireService,
                 private familleCatenaireService: FamilleCatenaireService,
                 private requeteService:RequeteService,
+                private sharedService:SharedService,
                 private navigationService:NavigationService,
                 private confirmationService: ConfirmationService) {
 
         this.formSaisie = this.formBuilder.group({
             typeLigne:[ELigne.LGV,Validators.required],
-            nbrPanto:[0, Validators.required],
-            vitesse:[0,Validators.required],
+            nbrPanto:[1, Validators.required],
+            vitesse:[30,Validators.required],
             categorieMaintenance:['',Validators.required],
             typeInstallationTension:['',Validators.required],
-            FamilleInstallationTension:['',Validators.required],
+            familleInstallationTension:['',Validators.required],
             nombreML:[0,Validators.required],
             nombreIS:[0,Validators.required],
             nombreAIG:[0,Validators.required],
@@ -97,20 +100,37 @@ export class ModeSaisieComponent implements OnInit {
 
 
     ngOnInit() {
-        this.categorieMaintenanceService.findAll().subscribe(
-            categorieMaintenanceList => {
-                this.categorieMaintenanceList = categorieMaintenanceList;
-            });
+        this.titleService.setTitle('Mode Saisie');
+        this.sharedService.requete$.subscribe(res => {
+            this.requete = res;
+            if(this.requete){
+                this.formSaisie.patchValue({
+                    typeLigne:res.typeLigne,
+                    nbrPanto:res.nbrPanto,
+                    vitesse:res.vitesse,
+                    categorieMaintenance:res.categorieMaintenance,
+                    nombreML:res.nombreML,
+                    nombreIS:res.nombreIS,
+                    nombreAIG:res.nombreAIG,
+                    nombreAT:res.nombreAT,
+                    nombreIA:res.nombreIA
+                });
+            }
+            this.categorieMaintenanceService.findAll().subscribe(
+                categorieMaintenanceList => {
+                    this.categorieMaintenanceList = categorieMaintenanceList;
+                });
 
-        this.catenaireService.findAll().subscribe(
-            catenaireList => {
-                this.catenaireInstallationList = catenaireList;
-            });
+            this.catenaireService.findAll().subscribe(
+                catenaireList => {
+                    this.catenaireInstallationList = catenaireList;
+                });
 
-        this.familleCatenaireService.findAll().subscribe(
-            familleCatenaireList => {
-                this.familleCatenaireInstallationList = familleCatenaireList;
-            });
+            this.familleCatenaireService.findAll().subscribe(
+                familleCatenaireList => {
+                    this.familleCatenaireInstallationList = familleCatenaireList;
+                });
+        });
     }
 
     get f() { return this.formSaisie.controls; }
@@ -142,8 +162,9 @@ export class ModeSaisieComponent implements OnInit {
     }
 
     getCatenaireByFamille() {
-        this.catenaireInstallationListFilter = this.catenaireInstallationList.filter(
-            catenaireList  => catenaireList.familleCatenaire === this.f.FamilleInstallationTension.value.id);
+        this.catenaireInstallationListFilter =
+            this.catenaireInstallationList
+                .filter(catenaireList  => catenaireList.familleCatenaire === this.f.familleInstallationTension.value.id);
     }
 
     onClickSave(analyse:boolean) {
@@ -188,7 +209,7 @@ export class ModeSaisieComponent implements OnInit {
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Sauvegarder',
-                    detail: `Erreur lors de la sauvegarde de la requête: ${error}`,
+                    detail: `Erreur lors de la sauvegarde de la requête`,
                     key: 'top'
                 });
                 return throwError(error);
