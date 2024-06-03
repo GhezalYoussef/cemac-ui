@@ -27,7 +27,7 @@ import {CatenaireService} from "../../services/catenaire.service";
 import {FamilleCatenaireService} from "../../services/famille-catenaire.service";
 import {FamilleCatenaire} from "../../models/famille-catenaire.model";
 import {Requete} from "../../models/requete";
-import {catchError, of, switchMap, throwError} from "rxjs";
+import {catchError, forkJoin, of, switchMap, throwError} from "rxjs";
 import {RequeteService} from "../../services/requete.service";
 import {NavigationService} from "../../services/navigation.service";
 import {ToastModule} from "primeng/toast";
@@ -97,52 +97,60 @@ export class ModeSaisieComponent implements OnInit {
         });
     }
 
-
-
-    ngOnInit() {
+    ngOnInit(): void {
         this.titleService.setTitle('Mode Saisie');
-        this.sharedService.requete$.subscribe(res => {
-            this.requete = res;
-            if(this.requete){
-                this.formSaisie.patchValue({
-                    typeLigne:res.typeLigne,
-                    nbrPanto:res.nbrPanto,
-                    vitesse:res.vitesse,
-                    categorieMaintenance:res.categorieMaintenance,
-                    nombreML:res.nombreML,
-                    nombreIS:res.nombreIS,
-                    nombreAIG:res.nombreAIG,
-                    nombreAT:res.nombreAT,
-                    nombreIA:res.nombreIA
-                });
-            }
-            this.categorieMaintenanceService.findAll().subscribe(
-                categorieMaintenanceList => {
-                    this.categorieMaintenanceList = categorieMaintenanceList;
-                });
+        this.loadInitialData();
+    }
 
-            this.catenaireService.findAll().subscribe(
-                catenaireList => {
-                    this.catenaireInstallationList = catenaireList;
-                    let catenaire = undefined;
-                    if(this.requete){
-                        catenaire = this.catenaireInstallationList.find(value => value.id === this.requete.typeInstallationTension);
-                    }
-                    this.familleCatenaireService.findAll().subscribe(
-                        familleCatenaireList => {
-                            this.familleCatenaireInstallationList = familleCatenaireList;
-                            console.log(catenaire);
-                            if(this.requete){
-                                let familleCatenaire = this.familleCatenaireInstallationList.find(value => value.id === catenaire.familleCatenaire);
-                                this.f.familleInstallationTension.setValue(familleCatenaire);
-                                this.catenaireInstallationListFilter =
-                                    this.catenaireInstallationList
-                                        .filter(catenaireList  => catenaireList.familleCatenaire === this.f.familleInstallationTension.value.id);
-                                this.f.typeInstallationTension.setValue(catenaire);
-                            }
-                        });
-                });
+    private loadInitialData(): void {
+        this.sharedService.requete$.subscribe(requete => {
+            this.requete = requete;
+            if (this.requete) {
+                this.patchFormValues();
+            }
+
+            forkJoin({
+                categorieMaintenanceList: this.categorieMaintenanceService.findAll(),
+                catenaireList: this.catenaireService.findAll(),
+                familleCatenaireList: this.familleCatenaireService.findAll()
+            }).subscribe(({ categorieMaintenanceList, catenaireList, familleCatenaireList }) => {
+                this.categorieMaintenanceList = categorieMaintenanceList;
+                this.catenaireInstallationList = catenaireList;
+                this.familleCatenaireInstallationList = familleCatenaireList;
+
+                if (this.requete) {
+                    this.setCatenaireAndFamilleCatenaire();
+                }
+            });
         });
+    }
+
+    private patchFormValues(): void {
+        this.formSaisie.patchValue({
+            typeLigne: this.requete.typeLigne,
+            nbrPanto: this.requete.nbrPanto,
+            vitesse: this.requete.vitesse,
+            categorieMaintenance: this.requete.categorieMaintenance,
+            nombreML: this.requete.nombreML,
+            nombreIS: this.requete.nombreIS,
+            nombreAIG: this.requete.nombreAIG,
+            nombreAT: this.requete.nombreAT,
+            nombreIA: this.requete.nombreIA
+        });
+    }
+
+    private setCatenaireAndFamilleCatenaire(): void {
+        const catenaire = this.catenaireInstallationList.find(value => value.id === this.requete.typeInstallationTension);
+
+        if (catenaire) {
+            const familleCatenaire = this.familleCatenaireInstallationList.find(value => value.id === catenaire.familleCatenaire);
+
+            if (familleCatenaire) {
+                this.formSaisie.get('familleInstallationTension').setValue(familleCatenaire);
+                this.catenaireInstallationListFilter = this.catenaireInstallationList.filter(catenaireItem => catenaireItem.familleCatenaire === familleCatenaire.id);
+                this.formSaisie.get('typeInstallationTension').setValue(catenaire);
+            }
+        }
     }
 
     get f() { return this.formSaisie.controls; }
