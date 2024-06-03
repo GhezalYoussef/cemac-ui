@@ -15,7 +15,6 @@ import {
     ReactiveFormsModule,
     Validators
 } from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
 import {ELigne} from "../../models/enum/ELigne.enum";
 import {InputTextModule} from "primeng/inputtext";
 import {CategorieMaintenance} from "../../models/categorie-maintenance.model";
