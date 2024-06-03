@@ -124,11 +124,23 @@ export class ModeSaisieComponent implements OnInit {
             this.catenaireService.findAll().subscribe(
                 catenaireList => {
                     this.catenaireInstallationList = catenaireList;
-                });
-
-            this.familleCatenaireService.findAll().subscribe(
-                familleCatenaireList => {
-                    this.familleCatenaireInstallationList = familleCatenaireList;
+                    let catenaire = undefined;
+                    if(this.requete){
+                        catenaire = this.catenaireInstallationList.find(value => value.id === this.requete.typeInstallationTension);
+                    }
+                    this.familleCatenaireService.findAll().subscribe(
+                        familleCatenaireList => {
+                            this.familleCatenaireInstallationList = familleCatenaireList;
+                            console.log(catenaire);
+                            if(this.requete){
+                                let familleCatenaire = this.familleCatenaireInstallationList.find(value => value.id === catenaire.familleCatenaire);
+                                this.f.familleInstallationTension.setValue(familleCatenaire);
+                                this.catenaireInstallationListFilter =
+                                    this.catenaireInstallationList
+                                        .filter(catenaireList  => catenaireList.familleCatenaire === this.f.familleInstallationTension.value.id);
+                                this.f.typeInstallationTension.setValue(catenaire);
+                            }
+                        });
                 });
         });
     }
@@ -191,7 +203,7 @@ export class ModeSaisieComponent implements OnInit {
             nbrPanto:this.f.nbrPanto.value,
             vitesse:this.f.vitesse.value,
             categorieMaintenance:this.f.categorieMaintenance.value,
-            typeInstallationTension:this.f.typeInstallationTension.value,
+            typeInstallationTension:this.f.typeInstallationTension.value.id,
             nombreML:this.f.nombreML.value,
             nombreIS:this.f.nombreIS.value,
             nombreAIG:this.f.nombreAIG.value,

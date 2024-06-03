@@ -19,4 +19,5 @@ export class CatenaireService {
     findAll(): Observable<Catenaire[]>{
         return this.http.get<Catenaire[]>(`${this.serverUrl}/api/v1/catenaire/list-catenaire`);
     }
+    
 }
