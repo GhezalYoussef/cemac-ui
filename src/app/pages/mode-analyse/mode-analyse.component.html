@@ -36,7 +36,7 @@
                                         <th>COUT</th>
                                     </tr>
                                 </ng-template>
-                                <ng-template pTemplate="body" let-result let-expanded="expanded">
+                                <ng-template pTemplate="body" let-result>
                                     <tr [pSelectableRow]="result">
                                         <td>{{result.refResult}}</td>
                                         <td>{{result.categorie}}</td>
@@ -44,8 +44,8 @@
                                         <td>{{result.operation}}</td>
                                         <td>{{result.sousOperation}}</td>
                                         <td>{{result.categorieMaintenance}}</td>
-                                        <td>{{result.uop}}</td>
-                                        <td>{{result.cout}}</td>
+                                        <td>{{result.uop | number :'1.2-2'}}</td>
+                                        <td>{{result.cout | number:'1.2-2'}}</td>
                                     </tr>
                                 </ng-template>
                             </p-table>

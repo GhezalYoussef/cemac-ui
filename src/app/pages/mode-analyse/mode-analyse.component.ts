@@ -10,7 +10,7 @@ import {ButtonModule} from "primeng/button";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {DatePipe, NgForOf} from "@angular/common";
+import {DatePipe, DecimalPipe, NgForOf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
 import {SharedService} from "../../services/shared.service";
 import {mergeMap} from "rxjs";
@@ -26,25 +26,26 @@ import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-mode-analyse',
   standalone: true,
-  imports: [
-      TemplateModule,
-      PanelModule,
-      InputNumberModule,
-      AutoCompleteModule,
-      DropdownModule,
-      MultiSelectModule,
-      ToggleButtonModule,
-      ButtonModule,
-      PaginatorModule,
-      ReactiveFormsModule,
-      NgForOf,
-      InputTextModule,
-      TableModule,
-      DatePipe,
-      ConfirmDialogModule,
-      MessageModule,
-      ToastModule
-  ],
+    imports: [
+        TemplateModule,
+        PanelModule,
+        InputNumberModule,
+        AutoCompleteModule,
+        DropdownModule,
+        MultiSelectModule,
+        ToggleButtonModule,
+        ButtonModule,
+        PaginatorModule,
+        ReactiveFormsModule,
+        NgForOf,
+        InputTextModule,
+        TableModule,
+        DatePipe,
+        ConfirmDialogModule,
+        MessageModule,
+        ToastModule,
+        DecimalPipe
+    ],
   providers: [ConfirmationService],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
