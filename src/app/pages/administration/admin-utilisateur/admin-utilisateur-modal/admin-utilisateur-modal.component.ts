@@ -1,8 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {
+    AsyncValidatorFn,
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ReactiveFormsModule,
+    ValidationErrors,
+    Validators
+} from "@angular/forms";
 import {Profil} from "../../../../models/profil.model";
 import {Utilisateur} from "../../../../models/Utilisateur.model";
-import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {UtilisateurService} from "../../../../services/utilisateur.service";
 import {ProfilService} from "../../../../services/profil.service";
@@ -12,6 +20,9 @@ import {MessageModule} from "primeng/message";
 import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
+import {ChipsModule} from "primeng/chips";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
 
 @Component({
   selector: 'app-admin-utilisateur-modal',
@@ -20,9 +31,14 @@ import {PanelModule} from "primeng/panel";
         MessageModule,
         DropdownModule,
         ButtonModule,
-        PanelModule
+        PanelModule,
+        ReactiveFormsModule,
+        ChipsModule,
+        ConfirmDialogModule,
+        ToastModule
 
     ],
+    providers: [DialogService],
   templateUrl: './admin-utilisateur-modal.component.html',
   styleUrl: './admin-utilisateur-modal.component.scss'
 })
@@ -43,7 +59,6 @@ export class AdminUtilisateurModalComponent implements OnInit {
     this.utilisateur = this.dialogConfig.data.utilisateur;
     this.formUtilisateur = this.formBuilder.group({
       profil: ['', Validators.required],
-      groupe: ['', Validators.required],
       idSncf: ['', Validators.required, this.idSNCFExistsValidator(), 'blur'],
       nom: ['', Validators.required],
       prenom: ['', Validators.required]
@@ -60,11 +75,11 @@ export class AdminUtilisateurModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.utilisateur !== undefined) {
-      this.formUtilisateur.get('nom').setValue(this.utilisateur.nom);
-      this.formUtilisateur.get('prenom').setValue(this.utilisateur.prenom);
-      this.formUtilisateur.get('idSncf').setValue(this.utilisateur.idSncf);
-      this.formUtilisateur.get('idSncf').disable();
-      this.formUtilisateur.get('profil').setValue(this.utilisateur.profil);
+      this.f.nom.setValue(this.utilisateur.nom);
+      this.f.prenom.setValue(this.utilisateur.prenom);
+      this.f.idSncf.setValue(this.utilisateur.idSncf);
+      this.f.idSncf.disable();
+      this.f.profil.setValue(this.utilisateur.profil);
     }
     this.getProfilList();
   }
@@ -72,11 +87,7 @@ export class AdminUtilisateurModalComponent implements OnInit {
   getProfilList() {
     this.profilService.getListProfil().subscribe(
         res => {
-          if(this.customAuthService.isAdmin()){
-            this.profilList = res.filter(profil => !profil.libelle.includes("ADMIN"));
-          }else{
             this.profilList = res;
-          }
         },
         error => {
           this.messageService.add(
@@ -102,10 +113,10 @@ export class AdminUtilisateurModalComponent implements OnInit {
   addUtilisateur() {
     const utilisateur: Utilisateur = {
       id: this.utilisateur !== undefined ? this.utilisateur.id : null,
-      profil: this.formUtilisateur.get('profil')?.value,
-      idSncf: this.formUtilisateur.get('idSncf')?.value,
-      nom: this.formUtilisateur.get('nom')?.value,
-      prenom: this.formUtilisateur.get('prenom')?.value,
+      profil: this.f.profil.value,
+      idSncf: this.f.idSncf.value,
+      nom: this.f.nom.value,
+      prenom: this.f.prenom.value,
     }
     this.userService.addUtilisateur(utilisateur).subscribe(
         (utilisateur) => {

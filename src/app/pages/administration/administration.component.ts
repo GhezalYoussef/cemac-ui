@@ -2,12 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {TemplateModule} from "@tec/condor/components";
 import {TabViewModule} from "primeng/tabview";
 import {AdminUtilisateurComponent} from "./admin-utilisateur/admin-utilisateur.component";
-import {AdminProfilComponent} from "./admin-profil/admin-profil.component";
 import {AdminCategorieMaintenanceComponent} from "./admin-categorie-maintenance/admin-categorie-maintenance.component";
 import {AdminCatenaireComponent} from "./admin-catenaire/admin-catenaire.component";
 import {AdminFamilleCatenaireComponent} from "./admin-famille-catenaire/admin-famille-catenaire.component";
 import {AdminPeriodiciteComponent} from "./admin-periodicite/admin-periodicite.component";
 import {Title} from "@angular/platform-browser";
+import {DialogService} from "primeng/dynamicdialog";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-administration',
@@ -16,12 +17,13 @@ import {Title} from "@angular/platform-browser";
         TemplateModule,
         TabViewModule,
         AdminUtilisateurComponent,
-        AdminProfilComponent,
         AdminCategorieMaintenanceComponent,
         AdminCatenaireComponent,
         AdminFamilleCatenaireComponent,
         AdminPeriodiciteComponent
     ],
+    providers: [DialogService,
+                ConfirmationService],
   templateUrl: './administration.component.html',
   styleUrl: './administration.component.scss'
 })

@@ -1,1 +1,75 @@
-<p>admin-categorie-maintenance works!</p>
+<div class="grid">
+    <div class="col-12 lg:col-12">
+        <p-panel header="Liste des signals">
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-table [value]="categorieMaintenanceList"
+                             sortMode="multiple"
+                             [paginator]="true"
+                             [rows]="10"
+                             [rowsPerPageOptions]="[5,10,20]"
+                             styleClass="p-datatable-gridlines"
+                             responsiveLayout="scroll">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="ui-p-5" pSortableColumn="typeLigne">
+                                    Type ligne
+                                    <p-sortIcon field="typeLigne"></p-sortIcon>
+                                    <p-columnFilter type="text" field="typeLigne" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="pantoMin">
+                                    Panto min
+                                    <p-sortIcon field="pantoMin"></p-sortIcon>
+                                    <p-columnFilter type="text" field="pantoMin" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="pantoMax">
+                                    Panto max
+                                    <p-sortIcon field="pantoMax"></p-sortIcon>
+                                    <p-columnFilter type="text" field="pantoMax" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="vitesseMin">
+                                    vitesse min
+                                    <p-sortIcon field="vitesseMin"></p-sortIcon>
+                                    <p-columnFilter type="text" field="vitesseMin" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="vitesseMax">
+                                    vitesse max
+                                    <p-sortIcon field="vitesseMax"></p-sortIcon>
+                                    <p-columnFilter type="text" field="vitesseMax" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="categorieMaintenance">
+                                    catégorie maintenance
+                                    <p-sortIcon field="categorieMaintenance"></p-sortIcon>
+                                    <p-columnFilter type="text" field="categorieMaintenance" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5">Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template let-categorieMaintenance pTemplate="body">
+                            <tr>
+                                <td>{{categorieMaintenance.typeLigne}}</td>
+                                <td>{{categorieMaintenance.pantoMin}}</td>
+                                <td>{{categorieMaintenance.pantoMax}}</td>
+                                <td>{{categorieMaintenance.vitesseMin}}</td>
+                                <td>{{categorieMaintenance.vitesseMax}}</td>
+                                <td>{{categorieMaintenance.categorieMaintenance}}</td>
+                                <td>
+                                    <span class="p-buttonset">
+                                        <button pButton icon="pi pi-pencil" class="p-button-info" (click)="showDialog(categorieMaintenance)"></button>
+                                        <button pButton icon="pi pi-times" class="p-button-danger" (click)="onDelete(categorieMaintenance.id)"></button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>
+

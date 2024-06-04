@@ -7,6 +7,9 @@ import {AdminUtilisateurModalComponent} from "./admin-utilisateur-modal/admin-ut
 import {PanelModule} from "primeng/panel";
 import {ButtonModule} from "primeng/button";
 import {TableModule} from "primeng/table";
+import {ReactiveFormsModule} from "@angular/forms";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ToastModule} from "primeng/toast";
 
 @Component({
   selector: 'app-admin-utilisateur',
@@ -14,7 +17,10 @@ import {TableModule} from "primeng/table";
     imports: [
         PanelModule,
         ButtonModule,
-        TableModule
+        TableModule,
+        ReactiveFormsModule,
+        ConfirmDialogModule,
+        ToastModule
     ],
   templateUrl: './admin-utilisateur.component.html',
   styleUrl: './admin-utilisateur.component.scss'
@@ -96,12 +102,12 @@ export class AdminUtilisateurComponent implements OnInit {
         });
 
         ref.onClose.subscribe(
-            utilisateurUpdate => {
+            () => {
                 this.userService.getListUtilisateur().subscribe(
                     (res) => {
                         this.utilisateurList = res
                     },
-                    (error) => {
+                    () => {
                         this.messageService.add(
                             {
                                 severity: 'error',

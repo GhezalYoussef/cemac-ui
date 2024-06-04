@@ -1,73 +1,84 @@
-<div class="formgrid" [formGroup]="formUtilisateur">
-    <div class="col-12 lg:col-12">
-        <div class="grid">
-            <div class="col-12 lg:col-12">
-                <p-panel header="Utilisateur">
-                    <div class="grid">
-                        <div class="col-12 lg:col-6">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <label style="color:#ffffff;">Nom</label>
-                                </span>
-                                <input type="text" formControlName="nom" pInputText placeholder="Nom" class="TexAlLeft">
-                            </div>
-                        </div>
-                        <div class="col-12 lg:col-6">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <label style="color:#ffffff;">Prenom</label>
-                                </span>
-                                <input type="text" formControlName="prenom" pInputText placeholder="Prenom"
-                                       class="TexAlLeft">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid">
-                        <div class="col-12 lg:col-12">
-                            <div class="p-inputgroup">
+<form [formGroup]="formUtilisateur">
+    <div class="formgrid">
+        <div class="col-12 lg:col-12">
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Utilisateur">
+                        <div class="grid">
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label style="color:#ffffff;">Identifiant SNCF</label>
+                                        <label>Nom</label>
                                     </span>
-                                <input type="text" formControlName="idSncf" pInputText placeholder="id SNCF"
-                                       class="TexAlLeft">
+                                    <input formControlName="nom" pInputText placeholder="Nom" class="TexAlLeft">
+                                </div>
                             </div>
-                            <p-message severity="error" text="Cet identifiant existe déjà."
-                                       *ngIf="utilisateur === undefined && formUtilisateur.get('idSncf').hasError('idExists')">
-                            </p-message>
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Prenom</label>
+                                    </span>
+                                    <input formControlName="prenom" pInputText placeholder="Prenom" class="TexAlLeft">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="grid" style="margin-bottom: 10px;">
-                        <div class="col-12 lg:col-6">
-                            <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon" style="background-color: #ffb714;">
-                                    <label style="color:#ffffff;">Profil</label>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Identifiant SNCF</label>
+                                    </span>
+                                    <input formControlName="idSncf" pInputText placeholder="id SNCF" class="TexAlLeft">
+                                </div>
+                                <p-message severity="error" text="Cet identifiant existe déjà."
+                                           *ngIf="utilisateur === undefined && formUtilisateur.get('idSncf').hasError('idExists')">
+                                </p-message>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon">
+                                    <label>Profil</label>
                                 </span>
-                                <p-dropdown [options]="profilList"
-                                            formControlName="profil"
-                                            optionLabel="libelle"
-                                            placeholder="Selectionner le profil"
-                                            [panelStyle]="{minWidth:'14em'}"
-                                            emptyFilterMessage="Aucune donnée trouvée.">
-                                </p-dropdown>
+                                    <p-dropdown [options]="profilList"
+                                                formControlName="profil"
+                                                optionLabel="libelle"
+                                                placeholder="Selectionner le profil"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="grid" style="display: flex;justify-content: center;margin-top: 30px">
-                        <div class="col-12 lg:col-3">
-                            <p-button label="Sauvegarder"
-                                      (onClick)="onSubmit()"
-                                      [style]="{'width': '100%'}"
-                                      [disabled]="!formUtilisateur.valid"></p-button>
+                        <div class="grid">
+                            <div class="col-12 lg:col-3">
+                                <p-button label="Sauvegarder"
+                                          (onClick)="onSubmit()"
+                                          [style]="{'width': '100%'}"
+                                          [disabled]="!formUtilisateur.valid"></p-button>
+                            </div>
+                            <div class="col-12 lg:col-3">
+                                <p-button label="Annuler"
+                                          styleClass="p-button-secondary"
+                                          (onClick)="cancel()"
+                                          [style]="{'width': '100%'}"></p-button>
+                            </div>
                         </div>
-                        <div class="col-12 lg:col-3">
-                            <p-button label="Annuler"
-                                      styleClass="p-button-secondary"
-                                      (onClick)="cancel()"
-                                      [style]="{'width': '100%'}"></p-button>
-                        </div>
-                    </div>
-                </p-panel>
+                    </p-panel>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>

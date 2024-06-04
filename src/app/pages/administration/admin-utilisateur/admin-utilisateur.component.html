@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12 lg:col-12">
         <p-panel header="Liste des utilisateurs">
-            <div class="grid">
+            <div class="grid" class="TexAlRight spaced">
                 <div class="col-12 lg:col-12">
                     <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
                 </div>
@@ -52,4 +52,13 @@
         </p-panel>
     </div>
 </div>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>
 
