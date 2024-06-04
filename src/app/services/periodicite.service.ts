@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ConstantService} from "@tec/condor/services";
 import {Periodicite} from "../models/periodicite.model";
 import {Observable} from "rxjs";
@@ -17,5 +17,17 @@ export class PeriodiciteService {
 
     findAll(): Observable<Periodicite[]>{
         return this.http.get<Periodicite[]>(`${this.serverUrl}/api/v1/periodicite/list-periodicite`);
+    }
+
+    delete(periodidiciteId: number) {
+        return this.http.delete<string>(`${this.serverUrl}/api/v1/periodicite/delete-periodicite/${periodidiciteId}`)
+    }
+
+    add(periodicite: Periodicite) {
+        const url = `${this.serverUrl}/api/v1/periodicite/update-periodicite`;
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+        return this.http.post<Periodicite>(url, periodicite, httpOptions);
     }
 }

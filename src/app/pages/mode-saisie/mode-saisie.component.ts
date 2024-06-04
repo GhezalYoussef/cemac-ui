@@ -163,11 +163,11 @@ export class ModeSaisieComponent implements OnInit {
                 this.f.nbrPanto.value >= categorieMaintenance.pantoMin &&
                 this.f.nbrPanto.value < categorieMaintenance.pantoMax &&
                 this.f.vitesse.value > categorieMaintenance.vitesseMin &&
-                this.f.vitesse.value <= categorieMaintenance.viteeseMax;
+                this.f.vitesse.value <= categorieMaintenance.vitesseMax;
 
             if (isValid) {
                 // Créer une clé unique pour chaque categorieMaintenance
-                const uniqueKey = `${categorieMaintenance.typeLigne}-${categorieMaintenance.pantoMin}-${categorieMaintenance.pantoMax}-${categorieMaintenance.vitesseMin}-${categorieMaintenance.viteeseMax}`;
+                const uniqueKey = `${categorieMaintenance.typeLigne}-${categorieMaintenance.pantoMin}-${categorieMaintenance.pantoMax}-${categorieMaintenance.vitesseMin}-${categorieMaintenance.vitesseMax}`;
 
                 if (!uniqueCategories.has(uniqueKey)) {
                     uniqueCategories.add(uniqueKey);
