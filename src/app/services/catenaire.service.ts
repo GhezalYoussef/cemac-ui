@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ConstantService} from "@tec/condor/services";
 import {Observable} from "rxjs";
 import {Catenaire} from "../models/catenaire.model";
@@ -19,5 +19,16 @@ export class CatenaireService {
     findAll(): Observable<Catenaire[]>{
         return this.http.get<Catenaire[]>(`${this.serverUrl}/api/v1/catenaire/list-catenaire`);
     }
-    
+
+    delete(catenaireId: number) {
+        return this.http.delete<string>(`${this.serverUrl}/api/v1/catenaire/delete-catenaire/${catenaireId}`)
+    }
+
+    add(catenaire: Catenaire) {
+        const url = `${this.serverUrl}/api/v1/catenaire/update-catenaire`;
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+        return this.http.post<Catenaire>(url, catenaire, httpOptions);
+    }
 }

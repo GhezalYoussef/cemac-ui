@@ -51,19 +51,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid">
-                            <div class="col-12 lg:col-3">
-                                <p-button label="Sauvegarder"
-                                          (onClick)="onSubmit()"
-                                          [style]="{'width': '100%'}"
-                                          [disabled]="!formUtilisateur.valid"></p-button>
-                            </div>
-                            <div class="col-12 lg:col-3">
-                                <p-button label="Annuler"
-                                          styleClass="p-button-secondary"
-                                          (onClick)="cancel()"
-                                          [style]="{'width': '100%'}"></p-button>
-                            </div>
+                        <div class="grid" >
+                            <p-button label="Sauvegarder"
+                                      (onClick)="onSubmit()"
+                                      [style]="{'width': '100%'}"
+                                      [disabled]="!formUtilisateur.valid"></p-button>
+                            <p-button label="Annuler"
+                                      styleClass="p-button-secondary"
+                                      (onClick)="cancel()"
+                                      [style]="{'width': '100%'}"></p-button>
                         </div>
                     </p-panel>
                 </div>
