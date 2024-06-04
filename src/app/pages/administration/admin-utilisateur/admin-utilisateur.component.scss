@@ -1,0 +1,11 @@
+:host::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  text-align: center;
+  padding: 0.5rem 0.5rem;
+  font-weight: 400;
+  position: relative;
+}
+
+:host::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  text-align: center;
+  position: relative;
+}
