@@ -89,7 +89,7 @@ export class AdminUtilisateurModalComponent implements OnInit {
         res => {
             this.profilList = res;
         },
-        error => {
+        () => {
           this.messageService.add(
               {
                 severity: 'warn',
@@ -131,7 +131,7 @@ export class AdminUtilisateurModalComponent implements OnInit {
             this.dialogRef.close();
           }
         },
-        (error) => {
+        () => {
           this.messageService.add(
               {
                 severity: 'error',

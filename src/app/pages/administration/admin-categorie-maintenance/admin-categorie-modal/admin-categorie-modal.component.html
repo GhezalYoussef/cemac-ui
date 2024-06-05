@@ -1,1 +1,101 @@
-<p>admin-categorie-modal works!</p>
+<form [formGroup]="formCategorieMaintenance">
+    <div class="formgrid">
+        <div class="col-12 lg:col-12">
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Utilisateur">
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Type ligne</label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="typeLigne"
+                                            [options]="typeLigneList"
+                                            placeholder="Selectionner le type ligne">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Panto min</label>
+                                    </span>
+                                    <input formControlName="pantoMin" pInputText placeholder="Panto min" class="TexAlLeft">
+                                </div>
+                            </div>
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Panto max</label>
+                                    </span>
+                                    <input formControlName="pantoMax" pInputText placeholder="Panto max" class="TexAlLeft">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Vitesse min</label>
+                                    </span>
+                                    <input formControlName="vitesseMin" pInputText placeholder="Vitesse min" class="TexAlLeft">
+                                </div>
+                            </div>
+                            <div class="col-12 lg:col-6">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Vitesse max</label>
+                                    </span>
+                                    <input formControlName="vitesseMax" pInputText placeholder="Vitesse max" class="TexAlLeft">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Categorie Maintenance</label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="categorieMaintenance"
+                                            [options]="typeCategorieList"
+                                            placeholder="Selectionner le type de categorie">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid" class="TexAlCenter">
+                            <div>
+                                <p-button label="Sauvegarder"
+                                          (onClick)="onSubmit()"
+                                          [style]="{'width': '100%'}"
+                                          [disabled]="!formCategorieMaintenance.valid"></p-button>
+                            </div>
+                            <div>
+                                <p-button label="Annuler"
+                                          styleClass="p-button-secondary"
+                                          (onClick)="cancel()"
+                                          [style]="{'width': '100%'}"></p-button>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>
