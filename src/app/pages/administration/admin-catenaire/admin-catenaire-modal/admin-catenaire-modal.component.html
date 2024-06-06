@@ -1,1 +1,63 @@
-<p>admin-catenaire-modal works!</p>
+<form [formGroup]="formCatenaire">
+    <div class="formgrid">
+        <div class="col-12 lg:col-12">
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Utilisateur">
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Libelle</label>
+                                    </span>
+                                    <input formControlName="libelle" pInputText placeholder="Libelle" class="TexAlLeft">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Famille</label>
+                                    </span>
+                                    <p-dropdown [options]="familleCatenaireList"
+                                                formControlName="familleCatenaire"
+                                                optionLabel="libelle"
+                                                placeholder="Selectionner la famille"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid" class="TexAlCenter">
+                            <div>
+                                <p-button label="Sauvegarder"
+                                          (onClick)="onSubmit()"
+                                          [style]="{'width': '100%'}"
+                                          [disabled]="!formCatenaire.valid"></p-button>
+                            </div>
+                            <div>
+                                <p-button label="Annuler"
+                                          styleClass="p-button-secondary"
+                                          (onClick)="cancel()"
+                                          [style]="{'width': '100%'}"></p-button>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>

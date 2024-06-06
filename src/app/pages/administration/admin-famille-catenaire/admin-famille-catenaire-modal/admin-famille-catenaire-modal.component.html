@@ -1,1 +1,47 @@
-<p>admin-famille-catenaire-modal works!</p>
+<form [formGroup]="formFamilleCatenaire">
+    <div class="formgrid">
+        <div class="col-12 lg:col-12">
+            <div class="grid">
+                <div class="col-12 lg:col-12">
+                    <p-panel header="Famille catenaire">
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>Libelle</label>
+                                    </span>
+                                    <input formControlName="libelle" pInputText placeholder="libelle" class="TexAlLeft">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid" class="TexAlCenter">
+                            <div>
+                                <p-button label="Sauvegarder"
+                                          (onClick)="onSubmit()"
+                                          [style]="{'width': '100%'}"
+                                          [disabled]="!formFamilleCatenaire.valid"></p-button>
+                            </div>
+                            <div>
+                                <p-button label="Annuler"
+                                          styleClass="p-button-secondary"
+                                          (onClick)="cancel()"
+                                          [style]="{'width': '100%'}"></p-button>
+                            </div>
+                        </div>
+                    </p-panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
+<p-toast key="top"></p-toast>
+<p-toast key="bottom-right" position="bottom-right"></p-toast>

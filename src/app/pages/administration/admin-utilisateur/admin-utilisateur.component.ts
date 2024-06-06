@@ -41,7 +41,7 @@ export class AdminUtilisateurComponent implements OnInit {
             (res) => {
                 this.utilisateurList = res;
             },
-            (error) => {
+            () => {
                 this.messageService.add(
                     {
                         severity: 'error',
@@ -67,7 +67,7 @@ export class AdminUtilisateurComponent implements OnInit {
                         });
                 }
             },
-            (error) => {
+            () => {
                 this.messageService.add(
                     {
                         severity: 'error',
