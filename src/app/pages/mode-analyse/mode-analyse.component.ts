@@ -75,7 +75,7 @@ export class ModeAnalyseComponent implements OnInit {
       ).subscribe(res =>{
           this.requete = res;
           this.analyseResultList = res.analyseResultList;
-      },error => {
+      },() => {
           this.messageService.add(
               {
                   severity: 'error',
