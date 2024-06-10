@@ -3,20 +3,24 @@ import {ModeAnalyseComponent} from "./pages/mode-analyse/mode-analyse.component"
 import {ModeSaisieComponent} from "./pages/mode-saisie/mode-saisie.component";
 import {ListRequetesComponent} from "./pages/list-requetes/list-requetes.component";
 import {AdministrationComponent} from "./pages/administration/administration.component";
+import {CustomGuardService} from "./services/custom-guard.service";
+import {CustomRoleGuardService} from "./services/custom-role-guard.service";
+import {EProfil} from "./models/enum/EProfil.enum";
+import {AuthGuardService} from "@tec/condor/services";
 
 export const APP_ROUTES: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
-  // { path: 'requetes', component : ListRequetesComponent, canActivate: [CustomGuardService] },
-  // { path: 'saisie', component : ModeSaisieComponent , canActivate: [CustomGuardService]},
-  // { path: 'analyse', component : ModeAnalyseComponent, canActivate: [CustomGuardService] },
-  // { path: 'administration', component : AdministrationComponent ,canActivate: [CustomRoleGuardService], data:{roles: [EProfil.ADMIN]} },
-  // { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent), canActivate: [AuthGuardService] },
+  { path: 'requetes', component : ListRequetesComponent, canActivate: [CustomGuardService] },
+  { path: 'saisie', component : ModeSaisieComponent , canActivate: [CustomGuardService]},
+  { path: 'analyse', component : ModeAnalyseComponent, canActivate: [CustomGuardService] },
+  { path: 'administration', component : AdministrationComponent ,canActivate: [CustomRoleGuardService], data:{roles: [EProfil.ADMIN]} },
+  { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent), canActivate: [AuthGuardService] },
 
-  { path: 'requetes', component : ListRequetesComponent },
-  { path: 'saisie', component : ModeSaisieComponent},
-  { path: 'analyse', component : ModeAnalyseComponent},
-  { path: 'administration', component : AdministrationComponent },
-  { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)},
+  // { path: 'requetes', component : ListRequetesComponent },
+  // { path: 'saisie', component : ModeSaisieComponent},
+  // { path: 'analyse', component : ModeAnalyseComponent},
+  // { path: 'administration', component : AdministrationComponent },
+  // { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)},
 
   { path: "autologin", loadChildren: () => import("@tec/condor/services").then((m) => m.AutoLoginModule) },
   { path: 'logout', loadComponent: () => import('@tec/condor/pages').then(c => c.LogoutComponent) },

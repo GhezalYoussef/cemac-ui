@@ -7,12 +7,14 @@ import { ToastModule } from "primeng/toast";
 import { FooterPrimaryListComponent } from "./components/template/footerprimarylist/footerprimarylist.component";
 import { AppMenubarComponent } from "./components/template/menubar/menubar.component";
 import { AppTopMenuComponent } from "./components/template/topmenu/topmenu.component";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {MessageModule} from "primeng/message";
 
 @Component({
   selector: 'app-root',
   templateUrl: "./app.component.html",
   standalone: true,
-  imports: [RouterOutlet, TemplateModule, AppTopMenuComponent, AppMenubarComponent, FooterPrimaryListComponent, ToastModule],
+    imports: [RouterOutlet, TemplateModule, AppTopMenuComponent, AppMenubarComponent, FooterPrimaryListComponent, ToastModule, ConfirmDialogModule, MessageModule],
 })
 export class AppComponent implements OnInit {
 
