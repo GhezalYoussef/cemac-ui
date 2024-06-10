@@ -67,6 +67,7 @@ export class ModeSaisieComponent implements OnInit {
     catenaireInstallationList : Catenaire[] = [];
     familleCatenaireInstallationList : FamilleCatenaire[] = [];
     catenaireInstallationListFilter : Catenaire[] = [];
+    familleCatenaireInstallationListFilter : FamilleCatenaire[] = [];
     public requete ?: Requete;
 
     constructor(
@@ -116,13 +117,15 @@ export class ModeSaisieComponent implements OnInit {
                 this.categorieMaintenanceList = categorieMaintenanceList;
                 this.catenaireInstallationList = catenaireList;
                 this.familleCatenaireInstallationList = familleCatenaireList;
-
+                this.familleCatenaireInstallationListFilter = familleCatenaireList;
                 if (this.requete) {
                     this.setCatenaireAndFamilleCatenaire();
                 }
             });
         });
     }
+
+    onchange
 
     private patchFormValues(): void {
         this.formSaisie.patchValue({
@@ -178,6 +181,11 @@ export class ModeSaisieComponent implements OnInit {
         }
 
         this.f.categorieMaintenance.setValue(foundCategory);
+        this.getFamilleCatenaireByTypeLigne();
+    }
+
+    getFamilleCatenaireByTypeLigne(){
+        this.familleCatenaireInstallationListFilter = this.familleCatenaireInstallationList.filter(value => value.typeLigne === this.f.typeLigne.value);
     }
 
     getCatenaireByFamille() {

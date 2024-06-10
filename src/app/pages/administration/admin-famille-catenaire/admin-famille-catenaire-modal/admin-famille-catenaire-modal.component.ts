@@ -46,6 +46,7 @@ export class AdminFamilleCatenaireModalComponent implements OnInit {
 
     this.familleCatenaire = this.dialogConfig.data.familleCatenaire;
     this.formFamilleCatenaire = this.formBuilder.group({
+      typeLigne: ['', Validators.required],
       libelle: ['', Validators.required]
     });
 
@@ -64,6 +65,7 @@ export class AdminFamilleCatenaireModalComponent implements OnInit {
   addUtilisateur() {
     const familleCatenaire: FamilleCatenaire = {
       id: this.familleCatenaire !== undefined ? this.familleCatenaire.id : null,
+      typeLigne: this.f.typeLigne.value,
       libelle: this.f.libelle.value
     }
     this.familleCatenaireService.add(familleCatenaire).subscribe(
