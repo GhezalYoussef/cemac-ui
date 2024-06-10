@@ -185,7 +185,9 @@ export class ModeSaisieComponent implements OnInit {
     }
 
     getFamilleCatenaireByTypeLigne(){
-        this.familleCatenaireInstallationListFilter = this.familleCatenaireInstallationList.filter(value => value.typeLigne === this.f.typeLigne.value);
+        this.familleCatenaireInstallationListFilter =
+            this.familleCatenaireInstallationList.filter(value => value.typeLigne === this.f.typeLigne.value);
+        this.f.typeInstallationTension.setValue('');
     }
 
     getCatenaireByFamille() {
