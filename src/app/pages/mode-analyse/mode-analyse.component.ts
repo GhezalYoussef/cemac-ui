@@ -10,7 +10,7 @@ import {ButtonModule} from "primeng/button";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {DatePipe, DecimalPipe, NgForOf} from "@angular/common";
+import {DatePipe, DecimalPipe, NgClass, NgForOf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
 import {SharedService} from "../../services/shared.service";
 import {mergeMap} from "rxjs";
@@ -44,7 +44,8 @@ import {Title} from "@angular/platform-browser";
         ConfirmDialogModule,
         MessageModule,
         ToastModule,
-        DecimalPipe
+        DecimalPipe,
+        NgClass
     ],
   providers: [ConfirmationService],
   templateUrl: './mode-analyse.component.html',

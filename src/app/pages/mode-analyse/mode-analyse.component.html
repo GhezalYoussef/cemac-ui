@@ -26,28 +26,26 @@
                                      dataKey="refResult">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th>Réf</th>
                                         <th>CATÉGORIE</th>
                                         <th>SOUS CATÉGORIE</th>
                                         <th>OPÉRATION</th>
                                         <th>SOUS OPÉRATION</th>
-                                        <th>CATÉGORIE MAINTENANCE</th>
                                         <th>UOP</th>
                                         <th>COUT</th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-result>
-                                    <tr [pSelectableRow]="result">
-                                        <td>{{result.refResult}}</td>
+                                    <tr [ngClass]="{'row-accessories': result.uop > 0}">
                                         <td>{{result.categorie}}</td>
                                         <td>{{result.sousCategorie}}</td>
                                         <td>{{result.operation}}</td>
                                         <td>{{result.sousOperation}}</td>
-                                        <td>{{result.categorieMaintenance}}</td>
-<!--                                        <td>{{result.uop | number :'1.2-2'}}</td>-->
-<!--                                        <td>{{result.cout | number:'1.2-2'}}</td>-->
-                                        <td>{{ result.uop }}</td>
-                                        <td>{{ result.cout }}</td>
+                                        <td>
+                                            <div [ngClass]="{'outofstock':result.uop === 0, 'lowstock': (result.uop > 0 && result.uop < 10),'instock': result.uop > 10}">
+                                                {{result.uop}}
+                                            </div>
+                                        </td>
+                                        <td>{{result.cout}}</td>
                                     </tr>
                                 </ng-template>
                             </p-table>
