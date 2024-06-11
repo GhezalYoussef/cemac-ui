@@ -1,6 +1,5 @@
 <div id="superglobal">
   <div id="global">
-
     <div class="grid grid-nogutter align-items-center" id="header">
       <div class="col-6 lg:col-6">
         <div class="grid grid-nogutter align-items-center">
@@ -19,9 +18,19 @@
         <app-topmenu></app-topmenu>
       </div>
     </div>
+    <p-toast></p-toast><p-toast key="top"></p-toast>
+    <p-toast key="bottom-right" position="bottom-right"></p-toast>
+    <p-message key="global-messages"></p-message>
+    <p-message key="local-messages"></p-message>
+    <p-confirmDialog header="Confirmation"
+                     acceptIcon=""
+                     rejectIcon=""
+                     rejectButtonStyleClass="p-button-light"
+                     acceptLabel="Oui"
+                     rejectLabel="Non">
+    </p-confirmDialog>
     <app-menubar></app-menubar>
     <div id="layout-portlets-cover">
-      <p-toast></p-toast>
       <cd-routeLoader></cd-routeLoader>
       <router-outlet></router-outlet>
     </div>
@@ -33,14 +42,3 @@
     </ng-template>
   </cd-footer>
 </div>
-<p-confirmDialog header="Confirmation"
-                 acceptIcon=""
-                 rejectIcon=""
-                 rejectButtonStyleClass="p-button-light"
-                 acceptLabel="Oui"
-                 rejectLabel="Non">
-</p-confirmDialog>
-<p-toast key="top"></p-toast>
-<p-toast key="bottom-right" position="bottom-right"></p-toast>
-<p-message key="global-messages"></p-message>
-<p-message key="local-messages"></p-message>

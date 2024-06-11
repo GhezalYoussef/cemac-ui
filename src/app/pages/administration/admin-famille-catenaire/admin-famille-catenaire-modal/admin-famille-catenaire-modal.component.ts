@@ -17,17 +17,17 @@ import {ToastModule} from "primeng/toast";
 @Component({
   selector: 'app-admin-famille-catenaire-modal',
   standalone: true,
-    imports: [
-        ButtonModule,
-        ConfirmDialogModule,
-        DropdownModule,
-        InputTextModule,
-        MessageModule,
-        PaginatorModule,
-        PanelModule,
-        ReactiveFormsModule,
-        ToastModule
-    ],
+  imports: [
+    ButtonModule,
+    ConfirmDialogModule,
+    DropdownModule,
+    InputTextModule,
+    MessageModule,
+    PaginatorModule,
+    PanelModule,
+    ReactiveFormsModule,
+    ToastModule
+  ],
   templateUrl: './admin-famille-catenaire-modal.component.html',
   styleUrl: './admin-famille-catenaire-modal.component.scss'
 })

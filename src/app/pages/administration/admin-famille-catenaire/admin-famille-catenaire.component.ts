@@ -13,12 +13,12 @@ import {TableModule} from "primeng/table";
 @Component({
   selector: 'app-admin-famille-catenaire',
   standalone: true,
-    imports: [
-        ButtonModule,
-        PanelModule,
-        SharedModule,
-        TableModule
-    ],
+  imports: [
+    ButtonModule,
+    PanelModule,
+    SharedModule,
+    TableModule
+  ],
   templateUrl: './admin-famille-catenaire.component.html',
   styleUrl: './admin-famille-catenaire.component.scss'
 })

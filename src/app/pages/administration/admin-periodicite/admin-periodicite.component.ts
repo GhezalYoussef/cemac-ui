@@ -11,12 +11,12 @@ import {TableModule} from "primeng/table";
 @Component({
   selector: 'app-admin-periodicite',
   standalone: true,
-    imports: [
-        ButtonModule,
-        PanelModule,
-        SharedModule,
-        TableModule
-    ],
+  imports: [
+    ButtonModule,
+    PanelModule,
+    SharedModule,
+    TableModule
+  ],
   templateUrl: './admin-periodicite.component.html',
   styleUrl: './admin-periodicite.component.scss'
 })
