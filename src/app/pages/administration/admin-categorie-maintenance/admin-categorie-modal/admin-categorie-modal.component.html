@@ -53,7 +53,7 @@
                                     <p-inputNumber
                                             formControlName="vitesseMin"
                                             [showButtons]="true"
-                                            [min]="0">
+                                            [min]="-1">
                                     </p-inputNumber>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                     <p-inputNumber
                                             formControlName="vitesseMax"
                                             [showButtons]="true"
-                                            [min]="0">
+                                            [min]="-1">
                                     </p-inputNumber>
                                 </div>
                             </div>
@@ -88,14 +88,12 @@
                             <div>
                                 <p-button label="Sauvegarder"
                                           (onClick)="onSubmit()"
-                                          [style]="{'width': '100%'}"
                                           [disabled]="!formCategorieMaintenance.valid"></p-button>
                             </div>
                             <div>
                                 <p-button label="Annuler"
                                           styleClass="p-button-secondary"
-                                          (onClick)="cancel()"
-                                          [style]="{'width': '100%'}"></p-button>
+                                          (onClick)="cancel()"></p-button>
                             </div>
                         </div>
                     </p-panel>
