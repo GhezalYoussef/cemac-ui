@@ -3,30 +3,42 @@
         <div class="col-12 lg:col-12">
             <div class="grid">
                 <div class="col-12 lg:col-12">
-                    <p-panel header="Famille catenaire">
+                    <p-panel header="Famille caténaire">
                         <div class="grid">
                             <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Libelle</label>
+                                        <label>
+                                            Type ligne
+                                        </label>
+                                    </span>
+                                    <p-dropdown
+                                            formControlName="typeLigne"
+                                            [options]="typeLigneList"
+                                            placeholder="Selectionner le type ligne">
+                                    </p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
+                                <div class="p-inputgroup">
+                                    <span class="p-inputgroup-addon">
+                                        <label>
+                                            Libelle
+                                        </label>
                                     </span>
                                     <input formControlName="libelle" pInputText placeholder="libelle" class="TexAlLeft">
                                 </div>
                             </div>
                         </div>
-                        <div class="grid" class="TexAlCenter">
-                            <div>
-                                <p-button label="Sauvegarder"
-                                          (onClick)="onSubmit()"
-                                          [style]="{'width': '100%'}"
-                                          [disabled]="!formFamilleCatenaire.valid"></p-button>
-                            </div>
-                            <div>
-                                <p-button label="Annuler"
-                                          styleClass="p-button-secondary"
-                                          (onClick)="cancel()"
-                                          [style]="{'width': '100%'}"></p-button>
-                            </div>
+                        <div class="grid" class="TexAlRight">
+                            <p-button label="Sauvegarder"
+                                (onClick)="onSubmit()"
+                                [disabled]="!formFamilleCatenaire.valid"></p-button>
+                            <p-button label="Annuler"
+                                styleClass="p-button-secondary"
+                                (onClick)="cancel()"></p-button>
                         </div>
                     </p-panel>
                 </div>

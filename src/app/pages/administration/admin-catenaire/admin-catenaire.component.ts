@@ -89,7 +89,7 @@ export class AdminCatenaireComponent implements OnInit {
   showDialog(catenaireUpdate: Catenaire) {
     this.displayDialog = true;
     const ref = this.dialogService.open(AdminCatenaireModalComponent, {
-      header: 'Ajouter des référence',
+      header: 'Ajouter des références',
       height: '350px',
       width: '720px',
       data: {

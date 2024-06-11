@@ -9,6 +9,7 @@ import {
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
+import {ELigne} from "../../../models/enum/ELigne.enum";
 
 @Component({
   selector: 'app-admin-famille-catenaire',
@@ -25,6 +26,7 @@ import {TableModule} from "primeng/table";
 export class AdminFamilleCatenaireComponent implements OnInit {
   displayDialog = false;
   familleCatenaireList : FamilleCatenaire[] = [];
+
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
               private familleCatenaireService: FamilleCatenaireService,
@@ -88,7 +90,7 @@ export class AdminFamilleCatenaireComponent implements OnInit {
   showDialog(familleCatenaireUpdate: FamilleCatenaire) {
     this.displayDialog = true;
     const ref = this.dialogService.open(AdminFamilleCatenaireModalComponent, {
-      header: 'Ajouter des référence',
+      header: 'Ajouter des références',
       height: '350px',
       width: '720px',
       data: {

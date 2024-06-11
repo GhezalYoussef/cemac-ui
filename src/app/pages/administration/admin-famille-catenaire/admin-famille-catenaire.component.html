@@ -1,6 +1,6 @@
 <div class="grid">
     <div class="col-12 lg:col-12">
-        <p-panel header="Liste des signals">
+        <p-panel header="Liste des familles caténaire">
             <div class="grid" class="TexAlRight spaced">
                 <div class="col-12 lg:col-12">
                     <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
@@ -18,13 +18,21 @@
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="ui-p-5">
-                                    libelle
+                                    Type ligne
+                                    <p-sortIcon field="typeLigne"></p-sortIcon>
+                                    <p-columnFilter type="text" field="typeLigne" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="libelle">
+                                    Libelle
+                                    <p-sortIcon field="libelle"></p-sortIcon>
+                                    <p-columnFilter type="text" field="libelle" display="menu"></p-columnFilter>
                                 </th>
                                 <th class="ui-p-5">Action</th>
                             </tr>
                         </ng-template>
                         <ng-template let-familleCatenaire pTemplate="body">
                             <tr>
+                                <td>{{ familleCatenaire.typeLigne }}</td>
                                 <td>{{ familleCatenaire.libelle }}</td>
                                 <td>
                                     <span class="p-buttonset">

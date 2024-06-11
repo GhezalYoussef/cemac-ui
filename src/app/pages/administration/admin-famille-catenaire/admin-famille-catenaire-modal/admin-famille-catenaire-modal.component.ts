@@ -13,6 +13,7 @@ import {MessageModule} from "primeng/message";
 import {PaginatorModule} from "primeng/paginator";
 import {PanelModule} from "primeng/panel";
 import {ToastModule} from "primeng/toast";
+import {ELigne} from "../../../../models/enum/ELigne.enum";
 
 @Component({
   selector: 'app-admin-famille-catenaire-modal',
@@ -36,6 +37,7 @@ export class AdminFamilleCatenaireModalComponent implements OnInit {
 
   formFamilleCatenaire ?: FormGroup;
   familleCatenaire ?: FamilleCatenaire;
+  typeLigneList : string[] = [ELigne.CLASSIQUE, ELigne.LGV];
 
   constructor(private formBuilder: FormBuilder,
               private dialogRef: DynamicDialogRef,
@@ -58,6 +60,7 @@ export class AdminFamilleCatenaireModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.familleCatenaire !== undefined) {
+      this.f.typeLigne.setValue(this.familleCatenaire.typeLigne);
       this.f.libelle.setValue(this.familleCatenaire.libelle);
     }
   }
