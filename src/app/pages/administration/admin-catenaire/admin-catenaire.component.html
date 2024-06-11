@@ -17,7 +17,11 @@
                              responsiveLayout="scroll">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th class="ui-p-5">libelle</th>
+                                <th class="ui-p-5" pSortableColumn="libelle">
+                                    libelle
+                                    <p-sortIcon field="libelle"></p-sortIcon>
+                                    <p-columnFilter type="text" field="libelle" display="menu"></p-columnFilter>
+                                </th>
                                 <th class="ui-p-5">Action</th>
                             </tr>
                         </ng-template>
