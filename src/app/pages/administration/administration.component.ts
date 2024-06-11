@@ -8,22 +8,20 @@ import {AdminFamilleCatenaireComponent} from "./admin-famille-catenaire/admin-fa
 import {AdminPeriodiciteComponent} from "./admin-periodicite/admin-periodicite.component";
 import {Title} from "@angular/platform-browser";
 import {DialogService} from "primeng/dynamicdialog";
-import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-administration',
   standalone: true,
-    imports: [
-        TemplateModule,
-        TabViewModule,
-        AdminUtilisateurComponent,
-        AdminCategorieMaintenanceComponent,
-        AdminCatenaireComponent,
-        AdminFamilleCatenaireComponent,
-        AdminPeriodiciteComponent
-    ],
-    providers: [DialogService,
-                ConfirmationService],
+  imports: [
+    TemplateModule,
+    TabViewModule,
+    AdminUtilisateurComponent,
+    AdminCategorieMaintenanceComponent,
+    AdminCatenaireComponent,
+    AdminFamilleCatenaireComponent,
+    AdminPeriodiciteComponent
+  ],
+  providers: [DialogService],
   templateUrl: './administration.component.html',
   styleUrl: './administration.component.scss'
 })

@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { TemplateModule } from "@tec/condor/components";
-import { PrimeNGConfig } from "primeng/api";
+import {ConfirmationService, PrimeNGConfig} from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { FooterPrimaryListComponent } from "./components/template/footerprimarylist/footerprimarylist.component";
 import { AppMenubarComponent } from "./components/template/menubar/menubar.component";
@@ -14,7 +14,8 @@ import {MessageModule} from "primeng/message";
   selector: 'app-root',
   templateUrl: "./app.component.html",
   standalone: true,
-    imports: [RouterOutlet, TemplateModule, AppTopMenuComponent, AppMenubarComponent, FooterPrimaryListComponent, ToastModule, ConfirmDialogModule, MessageModule],
+  providers:[ConfirmDialogModule, ConfirmationService],
+  imports: [RouterOutlet, TemplateModule, AppTopMenuComponent, AppMenubarComponent, FooterPrimaryListComponent, ToastModule, ConfirmDialogModule, MessageModule],
 })
 export class AppComponent implements OnInit {
 

@@ -24,7 +24,6 @@ import {ToastModule} from "primeng/toast";
     MessageModule,
     ToastModule
   ],
-  providers: [ConfirmationService],
   templateUrl: './list-requetes.component.html',
   styleUrl: './list-requetes.component.scss'
 })

@@ -55,7 +55,6 @@ import {SharedService} from "../../services/shared.service";
     ToastModule,
     ConfirmDialogModule
   ],
-  providers: [ConfirmationService],
   templateUrl: './mode-saisie.component.html',
   styleUrl: './mode-saisie.component.scss'
 })

@@ -10,7 +10,7 @@ import {
 } from "@angular/forms";
 import {Profil} from "../../../../models/profil.model";
 import {Utilisateur} from "../../../../models/Utilisateur.model";
-import {DialogService, DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
+import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {UtilisateurService} from "../../../../services/utilisateur.service";
 import {ProfilService} from "../../../../services/profil.service";
@@ -38,7 +38,6 @@ import {ToastModule} from "primeng/toast";
         ToastModule
 
     ],
-    providers: [DialogService],
   templateUrl: './admin-utilisateur-modal.component.html',
   styleUrl: './admin-utilisateur-modal.component.scss'
 })

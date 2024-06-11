@@ -33,8 +33,14 @@
     </ng-template>
   </cd-footer>
 </div>
-
-<p-message key="global-messages"></p-message>
-<p-message key="local-messages"></p-message>
+<p-confirmDialog header="Confirmation"
+                 acceptIcon=""
+                 rejectIcon=""
+                 rejectButtonStyleClass="p-button-light"
+                 acceptLabel="Oui"
+                 rejectLabel="Non">
+</p-confirmDialog>
 <p-toast key="top"></p-toast>
 <p-toast key="bottom-right" position="bottom-right"></p-toast>
+<p-message key="global-messages"></p-message>
+<p-message key="local-messages"></p-message>

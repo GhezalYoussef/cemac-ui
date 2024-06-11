@@ -47,7 +47,6 @@ import {Title} from "@angular/platform-browser";
         DecimalPipe,
         NgClass
     ],
-  providers: [ConfirmationService],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
 })
