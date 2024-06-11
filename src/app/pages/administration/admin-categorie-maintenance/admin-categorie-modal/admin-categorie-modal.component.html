@@ -3,7 +3,7 @@
         <div class="col-12 lg:col-12">
             <div class="grid">
                 <div class="col-12 lg:col-12">
-                    <p-panel header="Utilisateur">
+                    <p-panel header="Catégorie">
                         <div class="grid">
                             <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
@@ -13,7 +13,7 @@
                                     <p-dropdown
                                             formControlName="typeLigne"
                                             [options]="typeLigneList"
-                                            placeholder="Selectionner le type ligne">
+                                            placeholder="Sélectionner le type ligne">
                                     </p-dropdown>
                                 </div>
                             </div>
@@ -24,7 +24,11 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Panto min</label>
                                     </span>
-                                    <input formControlName="pantoMin" pInputText placeholder="Panto min" class="TexAlLeft">
+                                    <p-inputNumber
+                                            formControlName="pantoMin"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
                             <div class="col-12 lg:col-6">
@@ -32,7 +36,11 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Panto max</label>
                                     </span>
-                                    <input formControlName="pantoMax" pInputText placeholder="Panto max" class="TexAlLeft">
+                                    <p-inputNumber
+                                            formControlName="pantoMax"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +50,11 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Vitesse min</label>
                                     </span>
-                                    <input formControlName="vitesseMin" pInputText placeholder="Vitesse min" class="TexAlLeft">
+                                    <p-inputNumber
+                                            formControlName="vitesseMin"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
                             <div class="col-12 lg:col-6">
@@ -50,7 +62,11 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Vitesse max</label>
                                     </span>
-                                    <input formControlName="vitesseMax" pInputText placeholder="Vitesse max" class="TexAlLeft">
+                                    <p-inputNumber
+                                            formControlName="vitesseMax"
+                                            [showButtons]="true"
+                                            [min]="0">
+                                    </p-inputNumber>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +79,7 @@
                                     <p-dropdown
                                             formControlName="categorieMaintenance"
                                             [options]="typeCategorieList"
-                                            placeholder="Selectionner le type de categorie">
+                                            placeholder="Sélectionner le type de catégorie">
                                     </p-dropdown>
                                 </div>
                             </div>

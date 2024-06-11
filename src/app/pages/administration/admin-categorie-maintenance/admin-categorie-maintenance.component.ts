@@ -88,8 +88,8 @@ export class AdminCategorieMaintenanceComponent implements OnInit{
   showDialog(categorieMaintenanceUpdate: CategorieMaintenance) {
     this.displayDialog = true;
     const ref = this.dialogService.open(AdminCategorieModalComponent, {
-      header: 'Ajouter des référence',
-      height: '500px',
+      header: 'Ajouter des références',
+      height: '480px',
       width: '720px',
       data: {
         categorieMaintenance : categorieMaintenanceUpdate

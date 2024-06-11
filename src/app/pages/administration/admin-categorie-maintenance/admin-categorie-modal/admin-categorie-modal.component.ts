@@ -13,20 +13,22 @@ import {PanelModule} from "primeng/panel";
 import {ToastModule} from "primeng/toast";
 import {ELigne} from "../../../../models/enum/ELigne.enum";
 import {ECategorie} from "../../../../models/enum/ECategorie.enum";
+import {InputNumberModule} from "primeng/inputnumber";
 
 @Component({
   selector: 'app-admin-categorie-modal',
   standalone: true,
-  imports: [
-    ButtonModule,
-    ConfirmDialogModule,
-    DropdownModule,
-    InputTextModule,
-    MessageModule,
-    PanelModule,
-    ReactiveFormsModule,
-    ToastModule
-  ],
+    imports: [
+        ButtonModule,
+        ConfirmDialogModule,
+        DropdownModule,
+        InputTextModule,
+        MessageModule,
+        PanelModule,
+        ReactiveFormsModule,
+        ToastModule,
+        InputNumberModule
+    ],
   templateUrl: './admin-categorie-modal.component.html',
   styleUrl: './admin-categorie-modal.component.scss'
 })
