@@ -84,17 +84,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid" class="TexAlCenter">
-                            <div>
-                                <p-button label="Sauvegarder"
-                                          (onClick)="onSubmit()"
-                                          [disabled]="!formCategorieMaintenance.valid"></p-button>
-                            </div>
-                            <div>
-                                <p-button label="Annuler"
-                                          styleClass="p-button-secondary"
-                                          (onClick)="cancel()"></p-button>
-                            </div>
+                        <div class="grid" class="TexAlRight">
+                            <p-button label="Sauvegarder"
+                                      (onClick)="onSubmit()"
+                                      [disabled]="!formCategorieMaintenance.valid"></p-button>
+                            <p-button label="Annuler"
+                                      styleClass="p-button-secondary"
+                                      (onClick)="cancel()"></p-button>
                         </div>
                     </p-panel>
                 </div>
