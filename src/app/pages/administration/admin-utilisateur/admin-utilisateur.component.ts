@@ -94,11 +94,11 @@ export class AdminUtilisateurComponent implements OnInit {
         this.displayDialog = true;
         const ref = this.dialogService.open(AdminUtilisateurModalComponent, {
             header: 'Ajouter des utilisateurs',
-            height: '450px',
+            height: '400px',
             width: '720px',
             data: {
                 utilisateur: utilisateur
-            },
+            }
         });
 
         ref.onClose.subscribe(

@@ -3,7 +3,7 @@
         <div class="col-12 lg:col-12">
             <div class="grid">
                 <div class="col-12 lg:col-12">
-                    <p-panel header="Utilisateur">
+                    <p-panel header="caténaire">
                         <div class="grid">
                             <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
@@ -23,24 +23,21 @@
                                     <p-dropdown [options]="familleCatenaireList"
                                                 formControlName="familleCatenaire"
                                                 optionLabel="libelle"
-                                                placeholder="Selectionner la famille"
+                                                optionValue="id"
+                                                placeholder="Sélectionner la famille"
                                                 [panelStyle]="{minWidth:'14em'}"
                                                 emptyFilterMessage="Aucune donnée trouvée.">
                                     </p-dropdown>
                                 </div>
                             </div>
                         </div>
-                        <div class="grid" class="TexAlCenter">
-                            <div>
+                        <div class="grid" class="TexAlRight">
                                 <p-button label="Sauvegarder"
                                           (onClick)="onSubmit()"
                                           [disabled]="!formCatenaire.valid"></p-button>
-                            </div>
-                            <div>
                                 <p-button label="Annuler"
                                           styleClass="p-button-secondary"
                                           (onClick)="cancel()"></p-button>
-                            </div>
                         </div>
                     </p-panel>
                 </div>
