@@ -14,21 +14,27 @@ import {MessageModule} from "primeng/message";
 import {PaginatorModule} from "primeng/paginator";
 import {PanelModule} from "primeng/panel";
 import {ToastModule} from "primeng/toast";
+import {MultiSelectModule} from "primeng/multiselect";
+import {EUnit} from "../../../../models/enum/EUnit.enum";
+import {ECategorie} from "../../../../models/enum/ECategorie.enum";
+import {ETension} from "../../../../models/enum/ETension.enum";
+import {ELigne} from "../../../../models/enum/ELigne.enum";
 
 @Component({
   selector: 'app-admin-periodicite-modal',
   standalone: true,
-  imports: [
-    ButtonModule,
-    ConfirmDialogModule,
-    DropdownModule,
-    InputTextModule,
-    MessageModule,
-    PaginatorModule,
-    PanelModule,
-    ReactiveFormsModule,
-    ToastModule
-  ],
+    imports: [
+        ButtonModule,
+        ConfirmDialogModule,
+        DropdownModule,
+        InputTextModule,
+        MessageModule,
+        PaginatorModule,
+        PanelModule,
+        ReactiveFormsModule,
+        ToastModule,
+        MultiSelectModule
+    ],
   templateUrl: './admin-periodicite-modal.component.html',
   styleUrl: './admin-periodicite-modal.component.scss'
 })
@@ -36,6 +42,34 @@ export class AdminPeriodiciteModalComponent implements OnInit {
 
   formPeriodicite ?: FormGroup;
   catenaireList: Catenaire[] = [];
+  uniteList: EUnit[] = [
+      EUnit.ANS,
+      EUnit.JOURS,
+      EUnit.MOIS
+  ];
+
+  typeLigneList: ELigne[] = [
+      ELigne.LGV,
+      ELigne.CLASSIQUE
+  ];
+
+  tensionList: ETension[] = [
+      ETension._1500,
+      ETension._25000
+  ];
+
+  categorieMaintenanceList : ECategorie[] = [
+      ECategorie.ALL,
+      ECategorie.A1,
+      ECategorie.A2,
+      ECategorie.B,
+      ECategorie.C,
+      ECategorie.D,
+      ECategorie.E,
+      ECategorie.E1,
+      ECategorie.E2,
+      ECategorie.E3
+  ];
   periodicite ?: Periodicite;
 
   constructor(private formBuilder: FormBuilder,
@@ -65,6 +99,7 @@ export class AdminPeriodiciteModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.periodicite);
     if (this.periodicite !== undefined) {
       this.f.catenaires.setValue(this.periodicite.catenaires);
       this.f.categorieOperation.setValue(this.periodicite.categorieOperation);

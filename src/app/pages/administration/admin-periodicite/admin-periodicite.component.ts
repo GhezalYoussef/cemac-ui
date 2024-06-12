@@ -87,8 +87,8 @@ export class AdminPeriodiciteComponent implements OnInit {
   showDialog(periodiciteUpdate: Periodicite) {
     this.displayDialog = true;
     const ref = this.dialogService.open(AdminPeriodiciteModalComponent, {
-      header: 'Ajouter des référence signal',
-      height: '400px',
+      header: 'Ajouter des références',
+      height: '600px',
       width: '720px',
       data: {
         trainRef: periodiciteUpdate

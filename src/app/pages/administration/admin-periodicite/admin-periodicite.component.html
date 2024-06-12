@@ -1,6 +1,6 @@
 <div class="grid">
     <div class="col-12 lg:col-12">
-        <p-panel header="Liste des signals">
+        <p-panel header="Liste des périodicités">
             <div class="grid" class="TexAlRight spaced">
                 <div class="col-12 lg:col-12">
                     <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
@@ -18,31 +18,38 @@
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="ui-p-5">
-                                    Categorie operation
+                                    Catégorie
                                 </th>
                                 <th class="ui-p-5">
-                                    Sous categorie  Operation
+                                    S/S catégorie
+                                </th>
+                                <th class="ui-p-5" pSortableColumn="libelle">
+                                    Opération
+                                    <p-sortIcon field="libelle"></p-sortIcon>
+                                    <p-columnFilter type="text" field="libelle" display="menu"></p-columnFilter>
                                 </th>
                                 <th class="ui-p-5">
-                                    Operation
+                                    S/S opération
                                 </th>
-                                <th class="ui-p-5">
-                                    Sous operation
-                                </th>
-                                <th class="ui-p-5">
+                                <th class="ui-p-5" pSortableColumn="typeLigne">
                                     Type ligne
+                                    <p-sortIcon field="typeLigne"></p-sortIcon>
                                 </th>
-                                <th class="ui-p-5">
+                                <th class="ui-p-5" pSortableColumn="tension">
                                     Tension
+                                    <p-sortIcon field="tension"></p-sortIcon>
                                 </th>
-                                <th class="ui-p-5">
-                                    Categorie maintenance
+                                <th class="ui-p-5" pSortableColumn="categorieMaintenance">
+                                    Catégorie maintenance
+                                    <p-sortIcon field="categorieMaintenance"></p-sortIcon>
                                 </th>
-                                <th class="ui-p-5">
-                                    Unit
+                                <th class="ui-p-5" pSortableColumn="unit">
+                                    Unité
+                                    <p-sortIcon field="unit"></p-sortIcon>
                                 </th>
-                                <th class="ui-p-5">
-                                    Unit
+                                <th class="ui-p-5" pSortableColumn="periode">
+                                    Période
+                                    <p-sortIcon field="periode"></p-sortIcon>
                                 </th>
                                 <th class="ui-p-5">Action</th>
                             </tr>
@@ -59,7 +66,7 @@
                                 <td>{{ periodicite.unit }}</td>
                                 <td>{{ periodicite.periode }}</td>
                                 <td>
-                                    <span class="p-buttonset">
+                                    <span class="p-buttonset" class="txc">
                                         <button pButton icon="pi pi-pencil" class="p-button-info" (click)="showDialog(periodicite)"></button>
                                         <button pButton icon="pi pi-times" class="p-button-danger" (click)="onDelete(periodicite.id)"></button>
                                     </span>

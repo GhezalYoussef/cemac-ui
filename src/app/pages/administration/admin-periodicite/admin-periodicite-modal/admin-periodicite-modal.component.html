@@ -7,16 +7,17 @@
                         <div class="grid">
                             <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
-                                <span class="p-inputgroup-addon">
-                                    <label>Profil</label>
-                                </span>
-                                <p-dropdown [options]="catenaireList"
-                                            formControlName="catenaires"
-                                            optionLabel="libelle"
-                                            placeholder="Selectionner le profil"
-                                            [panelStyle]="{minWidth:'14em'}"
-                                            emptyFilterMessage="Aucune donnée trouvée.">
-                                </p-dropdown>
+                                    <span class="p-inputgroup-addon">
+                                        <label>List des caténaires</label>
+                                    </span>
+                                    <p-multiSelect
+                                                [options]="catenaireList"
+                                                formControlName="catenaires"
+                                                optionLabel="libelle"
+                                                placeholder="Sélectionner le profil"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-multiSelect>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +25,7 @@
                             <div class="col-12 lg:col-6">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Categorie operation</label>
+                                        <label>Catégorie opération</label>
                                     </span>
                                     <input formControlName="categorieOperation" pInputText placeholder="" class="TexAlLeft">
                                 </div>
@@ -32,25 +33,27 @@
                             <div class="col-12 lg:col-6">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Sous categorie operation</label>
+                                        <label>Sous catégorie opération</label>
                                     </span>
                                     <input formControlName="sousCategorieOperation" pInputText placeholder="" class="TexAlLeft">
                                 </div>
                             </div>
                         </div>
                         <div class="grid">
-                            <div class="col-12 lg:col-6">
+                            <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Operation</label>
+                                        <label>Opération</label>
                                     </span>
                                     <input formControlName="libelle" pInputText placeholder="" class="TexAlLeft">
                                 </div>
                             </div>
-                            <div class="col-12 lg:col-6">
+                        </div>
+                        <div class="grid">
+                            <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Sous operation</label>
+                                        <label>Sous opération</label>
                                     </span>
                                     <input formControlName="sousOperation" pInputText placeholder="" class="TexAlLeft">
                                 </div>
@@ -62,7 +65,12 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Type ligne</label>
                                     </span>
-                                    <input formControlName="typeLigne" pInputText placeholder="" class="TexAlLeft">
+                                    <p-dropdown [options]="typeLigneList"
+                                                formControlName="typeLigne"
+                                                placeholder="Sélectionner le type de la ligne"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
                                 </div>
                             </div>
                             <div class="col-12 lg:col-6">
@@ -70,7 +78,12 @@
                                     <span class="p-inputgroup-addon">
                                         <label>Tension</label>
                                     </span>
-                                    <input formControlName="tension" pInputText placeholder="" class="TexAlLeft">
+                                    <p-dropdown [options]="tensionList"
+                                                formControlName="tension"
+                                                placeholder="Sélectionner le type de tension"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -78,17 +91,27 @@
                             <div class="col-12 lg:col-6">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Categorie maintenance</label>
+                                        <label>Catégorie maintenance</label>
                                     </span>
-                                    <input formControlName="categorieMaintenance" pInputText placeholder="" class="TexAlLeft">
+                                    <p-dropdown [options]="categorieMaintenanceList"
+                                                formControlName="categorieMaintenance"
+                                                placeholder="Sélectionner le type de la catégorie de maintenance"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
                                 </div>
                             </div>
                             <div class="col-12 lg:col-6">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Unit</label>
+                                        <label>Unité</label>
                                     </span>
-                                    <input formControlName="unit" pInputText placeholder="" class="TexAlLeft">
+                                    <p-dropdown [options]="uniteList"
+                                                formControlName="unit"
+                                                placeholder="Sélectionner l'unité"
+                                                [panelStyle]="{minWidth:'14em'}"
+                                                emptyFilterMessage="Aucune donnée trouvée.">
+                                    </p-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -96,25 +119,24 @@
                             <div class="col-12 lg:col-12">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
-                                        <label>Periode</label>
+                                        <label>Période</label>
                                     </span>
-                                    <input formControlName="periode" pInputText placeholder="" class="TexAlLeft">
+                                    <p-inputNumber
+                                            formControlName="periode"
+                                            [showButtons]="true"
+                                            [min]="1"
+                                            [step]="1">
+                                    </p-inputNumber>
                                 </div>
                             </div>
                         </div>
-                        <div class="grid" class="TexAlCenter">
-                            <div>
-                                <p-button label="Sauvegarder"
-                                          (onClick)="onSubmit()"
-                                          [style]="{'width': '100%'}"
-                                          [disabled]="!formPeriodicite.valid"></p-button>
-                            </div>
-                            <div>
-                                <p-button label="Annuler"
-                                          styleClass="p-button-secondary"
-                                          (onClick)="cancel()"
-                                          [style]="{'width': '100%'}"></p-button>
-                            </div>
+                        <div class="grid" class="TexAlRight">
+                            <p-button label="Sauvegarder"
+                                      (onClick)="onSubmit()"
+                                      [disabled]="!formPeriodicite.valid"></p-button>
+                            <p-button label="Annuler"
+                                      styleClass="p-button-secondary"
+                                      (onClick)="cancel()"></p-button>
                         </div>
                     </p-panel>
                 </div>
