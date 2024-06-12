@@ -91,7 +91,7 @@ export class AdminPeriodiciteComponent implements OnInit {
       height: '600px',
       width: '720px',
       data: {
-        trainRef: periodiciteUpdate
+        periodicite: periodiciteUpdate
       },
     });
 

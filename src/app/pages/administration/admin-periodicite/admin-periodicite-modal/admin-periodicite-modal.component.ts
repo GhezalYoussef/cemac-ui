@@ -105,6 +105,7 @@ export class AdminPeriodiciteModalComponent implements OnInit {
       this.f.categorieOperation.setValue(this.periodicite.categorieOperation);
       this.f.sousCategorieOperation.setValue(this.periodicite.sousCategorieOperation);
       this.f.sousOperation.setValue(this.periodicite.sousOperation);
+      this.f.libelle.setValue(this.periodicite.libelle)
       this.f.typeLigne.setValue(this.periodicite.typeLigne);
       this.f.tension.setValue(this.periodicite.tension);
       this.f.categorieMaintenance.setValue(this.periodicite.categorieMaintenance);
