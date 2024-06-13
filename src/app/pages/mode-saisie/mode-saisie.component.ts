@@ -61,7 +61,7 @@ import {SharedService} from "../../services/shared.service";
 export class ModeSaisieComponent implements OnInit {
 
     formSaisie ?: FormGroup;
-    typeLigneList : string[] = [ELigne.CLASSIQUE, ELigne.LGV];
+    typeLigneList : ELigne[] = [ELigne.CLASSIQUE, ELigne.LGV];
     categorieMaintenanceList : CategorieMaintenance[] = [];
     catenaireInstallationList : Catenaire[] = [];
     familleCatenaireInstallationList : FamilleCatenaire[] = [];
@@ -161,7 +161,8 @@ export class ModeSaisieComponent implements OnInit {
         let foundCategory = '';
 
         for (const categorieMaintenance of this.categorieMaintenanceList) {
-            const isValid = this.f.typeLigne.value === categorieMaintenance.typeLigne &&
+            const isValid =
+                this.f.typeLigne.value === categorieMaintenance.typeLigne &&
                 this.f.nbrPanto.value >= categorieMaintenance.pantoMin &&
                 this.f.nbrPanto.value < categorieMaintenance.pantoMax &&
                 this.f.vitesse.value > categorieMaintenance.vitesseMin &&
@@ -169,7 +170,12 @@ export class ModeSaisieComponent implements OnInit {
 
             if (isValid) {
                 // Créer une clé unique pour chaque categorieMaintenance
-                const uniqueKey = `${categorieMaintenance.typeLigne}-${categorieMaintenance.pantoMin}-${categorieMaintenance.pantoMax}-${categorieMaintenance.vitesseMin}-${categorieMaintenance.vitesseMax}`;
+                const uniqueKey =
+                    `${categorieMaintenance.typeLigne}-
+                     ${categorieMaintenance.pantoMin}-
+                     ${categorieMaintenance.pantoMax}-
+                     ${categorieMaintenance.vitesseMin}-
+                     ${categorieMaintenance.vitesseMax}`;
 
                 if (!uniqueCategories.has(uniqueKey)) {
                     uniqueCategories.add(uniqueKey);
