@@ -23,6 +23,7 @@ import {PanelModule} from "primeng/panel";
 import {ChipsModule} from "primeng/chips";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ToastModule} from "primeng/toast";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-admin-utilisateur-modal',
@@ -35,8 +36,8 @@ import {ToastModule} from "primeng/toast";
         ReactiveFormsModule,
         ChipsModule,
         ConfirmDialogModule,
-        ToastModule
-
+        ToastModule,
+        CommonModule,
     ],
   templateUrl: './admin-utilisateur-modal.component.html',
   styleUrl: './admin-utilisateur-modal.component.scss'

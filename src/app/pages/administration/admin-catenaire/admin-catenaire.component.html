@@ -22,12 +22,18 @@
                                     <p-sortIcon field="libelle"></p-sortIcon>
                                     <p-columnFilter type="text" field="libelle" display="menu"></p-columnFilter>
                                 </th>
+                                <th class="ui-p-5" pSortableColumn="familleCatenaire">
+                                    Famille catenaire
+                                    <p-sortIcon field="familleCatenaire"></p-sortIcon>
+                                    <p-columnFilter type="text" field="familleCatenaire" display="menu"></p-columnFilter>
+                                </th>
                                 <th class="ui-p-5">Action</th>
                             </tr>
                         </ng-template>
                         <ng-template let-catenaire pTemplate="body">
                             <tr>
                                 <td>{{ catenaire.libelle }}</td>
+                                <td>{{ getFamilleCatenaire(catenaire.familleCatenaire) }}</td>
                                 <td>
                                     <span class="p-buttonset">
                                         <button pButton icon="pi pi-pencil" class="p-button-info" (click)="showDialog(catenaire)"></button>

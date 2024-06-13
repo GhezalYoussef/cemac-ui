@@ -1,6 +1,5 @@
 import {Catenaire} from "./catenaire.model";
 import {ELigne} from "./enum/ELigne.enum";
-import {ECategorie} from "./enum/ECategorie.enum";
 import {EUnit} from "./enum/EUnit.enum";
 
 export interface Periodicite{
@@ -13,7 +12,7 @@ export interface Periodicite{
     sousOperation:string;
     typeLigne:ELigne;
     tension:ELigne;
-    categorieMaintenance:ECategorie;
+    categorieMaintenance:string;
     unit:EUnit;
     periode:number;
 }

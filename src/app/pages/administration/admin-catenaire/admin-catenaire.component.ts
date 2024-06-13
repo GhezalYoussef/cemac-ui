@@ -8,6 +8,8 @@ import {AdminCatenaireModalComponent} from "./admin-catenaire-modal/admin-catena
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
+import {FamilleCatenaire} from "../../../models/famille-catenaire.model";
+import {FamilleCatenaireService} from "../../../services/famille-catenaire.service";
 
 @Component({
   selector: 'app-admin-catenaire',
@@ -23,15 +25,16 @@ import {TableModule} from "primeng/table";
 })
 export class AdminCatenaireComponent implements OnInit {
 
-
   displayDialog = false;
   catenaireList : Catenaire[] = [];
+  familleCatenaireList: FamilleCatenaire[] = [];
+
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
               private catenaireService: CatenaireService,
-              private confirmationService: ConfirmationService) {
+              private confirmationService: ConfirmationService,
+              private familleCatenaireService: FamilleCatenaireService) {
   }
-
 
   ngOnInit(): void {
 
@@ -48,7 +51,29 @@ export class AdminCatenaireComponent implements OnInit {
                 key: 'top'
               });
         });
+    this.getFamilleCatenaireList();
   }
+
+    getFamilleCatenaireList() {
+        this.familleCatenaireService.findAll().subscribe(
+            res => {
+                this.familleCatenaireList = res;
+            },
+            () => {
+                this.messageService.add(
+                    {
+                        severity: 'warn',
+                        summary: 'Charger',
+                        detail: 'Erreur lors du chargement de la liste.',
+                        key: 'top'
+                    });
+            })
+    }
+
+    getFamilleCatenaire(idFamilleCatenaire:number){
+      const familleCatenaire =  this.familleCatenaireList.find(familleCatenaire => familleCatenaire.id === idFamilleCatenaire);
+      return familleCatenaire ? familleCatenaire.libelle : "test";
+    }
 
   deleteCatenaire(catenaireId: number): void {
     this.catenaireService.delete(catenaireId).subscribe(
@@ -85,6 +110,7 @@ export class AdminCatenaireComponent implements OnInit {
       }
     });
   }
+
 
   showDialog(catenaireUpdate: Catenaire) {
     this.displayDialog = true;

@@ -16,7 +16,6 @@ import {PanelModule} from "primeng/panel";
 import {ToastModule} from "primeng/toast";
 import {MultiSelectModule} from "primeng/multiselect";
 import {EUnit} from "../../../../models/enum/EUnit.enum";
-import {ECategorie} from "../../../../models/enum/ECategorie.enum";
 import {ETension} from "../../../../models/enum/ETension.enum";
 import {ELigne} from "../../../../models/enum/ELigne.enum";
 
@@ -42,6 +41,7 @@ export class AdminPeriodiciteModalComponent implements OnInit {
 
   formPeriodicite ?: FormGroup;
   catenaireList: Catenaire[] = [];
+  typeCategorieList : string[] = [];
   uniteList: EUnit[] = [
       EUnit.ANS,
       EUnit.JOURS,
@@ -58,18 +58,6 @@ export class AdminPeriodiciteModalComponent implements OnInit {
       ETension._25000
   ];
 
-  categorieMaintenanceList : ECategorie[] = [
-      ECategorie.ALL,
-      ECategorie.A1,
-      ECategorie.A2,
-      ECategorie.B,
-      ECategorie.C,
-      ECategorie.D,
-      ECategorie.E,
-      ECategorie.E1,
-      ECategorie.E2,
-      ECategorie.E3
-  ];
   periodicite ?: Periodicite;
 
   constructor(private formBuilder: FormBuilder,
@@ -80,6 +68,7 @@ export class AdminPeriodiciteModalComponent implements OnInit {
               private catenaireService: CatenaireService,
   ) {
       this.periodicite = this.dialogConfig.data.periodicite;
+      this.typeCategorieList = this.dialogConfig.data.typeCategorieList;
       this.formPeriodicite = this.formBuilder.group({
         catenaires: ['', Validators.required],
         categorieOperation:['', Validators.required],

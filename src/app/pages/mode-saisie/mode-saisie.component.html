@@ -14,7 +14,7 @@
                                     <p-dropdown
                                             formControlName="typeLigne"
                                             [options]="typeLigneList"
-                                            placeholder="Selectionner le type ligne"
+                                            placeholder="Sélectionner le type ligne"
                                             (onChange)="getCategorieMaintenance()">
                                     </p-dropdown>
                                 </div>
@@ -80,7 +80,7 @@
                                     <input pInputText readonly formControlName="categorieMaintenance"/>
                                 </div>
                                 <p-message severity="error"
-                                           text="La categorie de maintenance est obligatoir."
+                                           text="La catégorie de maintenance est obligatoire."
                                            *ngIf="!f.categorieMaintenance.valid">
                                 </p-message>
                             </div>
@@ -102,7 +102,7 @@
                                             [options]="familleCatenaireInstallationListFilter"
                                             (onChange)="getCatenaireByFamille()"
                                             optionLabel="libelle"
-                                            placeholder="Selectionner la famille de la catenaire">
+                                            placeholder="Sélectionner la famille de la catenaire">
                                     </p-dropdown>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                             formControlName="typeInstallationTension"
                                             [options]="catenaireInstallationListFilter"
                                             optionLabel="libelle"
-                                            placeholder="Selectionner le catenaire de l'intsallation">
+                                            placeholder="Sélectionner le catenaire de l'intsallation">
                                     </p-dropdown>
                                 </div>
                             </div>

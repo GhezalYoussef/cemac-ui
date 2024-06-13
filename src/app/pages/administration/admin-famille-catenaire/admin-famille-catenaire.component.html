@@ -17,23 +17,23 @@
                              responsiveLayout="scroll">
                         <ng-template pTemplate="header">
                             <tr>
-                                <th class="ui-p-5">
-                                    Type ligne
-                                    <p-sortIcon field="typeLigne"></p-sortIcon>
-                                    <p-columnFilter type="text" field="typeLigne" display="menu"></p-columnFilter>
-                                </th>
                                 <th class="ui-p-5" pSortableColumn="libelle">
                                     Libelle
                                     <p-sortIcon field="libelle"></p-sortIcon>
                                     <p-columnFilter type="text" field="libelle" display="menu"></p-columnFilter>
+                                </th>
+                                <th class="ui-p-5">
+                                    Type ligne
+                                    <p-sortIcon field="typeLigne"></p-sortIcon>
+                                    <p-columnFilter type="text" field="typeLigne" display="menu"></p-columnFilter>
                                 </th>
                                 <th class="ui-p-5">Action</th>
                             </tr>
                         </ng-template>
                         <ng-template let-familleCatenaire pTemplate="body">
                             <tr>
-                                <td>{{ familleCatenaire.typeLigne }}</td>
                                 <td>{{ familleCatenaire.libelle }}</td>
+                                <td>{{ familleCatenaire.typeLigne }}</td>
                                 <td>
                                     <span class="p-buttonset">
                                         <button pButton icon="pi pi-pencil" class="p-button-info" (click)="showDialog(familleCatenaire)"></button>

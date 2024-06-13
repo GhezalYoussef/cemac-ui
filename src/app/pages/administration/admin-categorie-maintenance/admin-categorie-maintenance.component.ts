@@ -24,6 +24,7 @@ export class AdminCategorieMaintenanceComponent implements OnInit{
 
   displayDialog = false;
   categorieMaintenanceList : CategorieMaintenance[] = [];
+  typeCategorieList : string[] = [];
 
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
@@ -36,6 +37,9 @@ export class AdminCategorieMaintenanceComponent implements OnInit{
     this.categorieMaintenanceService.findAll().subscribe(
         res => {
           this.categorieMaintenanceList = res;
+          const typeCategorieArray = res.map(categorie => categorie.categorieMaintenance);
+          const uniqueNamesSet = new Set(typeCategorieArray);
+          this.typeCategorieList = Array.from(uniqueNamesSet);
         },
         () => {
           this.messageService.add(
@@ -92,7 +96,8 @@ export class AdminCategorieMaintenanceComponent implements OnInit{
       height: '450px',
       width: '720px',
       data: {
-        categorieMaintenance : categorieMaintenanceUpdate
+        categorieMaintenance : categorieMaintenanceUpdate,
+        typeCategorieList : this.typeCategorieList
       },
     });
 

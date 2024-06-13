@@ -1,5 +1,4 @@
 import {ELigne} from "./enum/ELigne.enum";
-import {ECategorie} from "./enum/ECategorie.enum";
 import {AnalyseResult} from "./analyse-result.model";
 
 export interface Requete{
@@ -13,7 +12,7 @@ export interface Requete{
     typeLigne:ELigne;
     nbrPanto:number;
     vitesse:number;
-    categorieMaintenance:ECategorie;
+    categorieMaintenance:string;
     typeInstallationTension:number;
     nombreML:number;
     nombreIS:number;

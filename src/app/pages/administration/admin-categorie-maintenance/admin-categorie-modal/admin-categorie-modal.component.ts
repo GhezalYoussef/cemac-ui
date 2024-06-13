@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {DynamicDialogConfig, DynamicDialogRef} from "primeng/dynamicdialog";
 import {MessageService} from "primeng/api";
 import {CategorieMaintenance} from "../../../../models/categorie-maintenance.model";
@@ -12,8 +12,9 @@ import {MessageModule} from "primeng/message";
 import {PanelModule} from "primeng/panel";
 import {ToastModule} from "primeng/toast";
 import {ELigne} from "../../../../models/enum/ELigne.enum";
-import {ECategorie} from "../../../../models/enum/ECategorie.enum";
 import {InputNumberModule} from "primeng/inputnumber";
+import {ToggleButtonModule} from "primeng/togglebutton";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-admin-categorie-modal',
@@ -27,7 +28,10 @@ import {InputNumberModule} from "primeng/inputnumber";
         PanelModule,
         ReactiveFormsModule,
         ToastModule,
-        InputNumberModule
+        InputNumberModule,
+        ToggleButtonModule,
+        FormsModule,
+        CommonModule,
     ],
   templateUrl: './admin-categorie-modal.component.html',
   styleUrl: './admin-categorie-modal.component.scss'
@@ -37,18 +41,8 @@ export class AdminCategorieModalComponent implements OnInit {
   formCategorieMaintenance ?: FormGroup;
   categorieMaintenance ?: CategorieMaintenance;
   typeLigneList : string[] = [ELigne.CLASSIQUE, ELigne.LGV];
-  typeCategorieList : string[] = [
-      ECategorie.A1,
-      ECategorie.A2,
-      ECategorie.B,
-      ECategorie.C,
-      ECategorie.D,
-      ECategorie.E,
-      ECategorie.E1,
-      ECategorie.E2,
-      ECategorie.E3,
-      ECategorie.ALL
-  ];
+  typeCategorieList : string[] = [];
+  selecetCategorie: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private dialogRef: DynamicDialogRef,
@@ -57,6 +51,7 @@ export class AdminCategorieModalComponent implements OnInit {
               private categorieMaintenanceService: CategorieMaintenanceService) {
 
     this.categorieMaintenance = this.dialogConfig.data.categorieMaintenance;
+    this.typeCategorieList = this.dialogConfig.data.typeCategorieList;
     this.formCategorieMaintenance = this.formBuilder.group({
       typeLigne:['', Validators.required],
       pantoMin:['', Validators.required],

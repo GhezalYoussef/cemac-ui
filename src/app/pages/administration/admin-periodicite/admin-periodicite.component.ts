@@ -7,6 +7,7 @@ import {AdminPeriodiciteModalComponent} from "./admin-periodicite-modal/admin-pe
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
+import {CategorieMaintenanceService} from "../../../services/categorie-maintenance.service";
 
 @Component({
   selector: 'app-admin-periodicite',
@@ -24,9 +25,11 @@ export class AdminPeriodiciteComponent implements OnInit {
 
   displayDialog = false;
   periodiciteList : Periodicite[] = [];
+  typeCategorieList : string[] = [];
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
               private periodiciteService: PeriodiciteService,
+              private categorieMaintenanceService: CategorieMaintenanceService,
               private confirmationService: ConfirmationService) {
   }
 
@@ -46,6 +49,25 @@ export class AdminPeriodiciteComponent implements OnInit {
                 key: 'top'
               });
         });
+    this.getTypeCategorieMaintenanceList();
+  }
+
+  getTypeCategorieMaintenanceList(){
+      this.categorieMaintenanceService.findAll().subscribe(
+          res => {
+              const typeCategorieArray = res.map(categorie => categorie.categorieMaintenance);
+              const uniqueNamesSet = new Set(typeCategorieArray);
+              this.typeCategorieList = Array.from(uniqueNamesSet);
+          },
+          () => {
+              this.messageService.add(
+                  {
+                      severity: 'error',
+                      summary: 'Charger',
+                      detail: 'Le chargement de la liste des refrences des categorie de maintenance a rencontré une erreur.',
+                      key: 'top'
+                  });
+          });
   }
 
   deletePeriodicite(periodiciteId: number): void {
@@ -91,7 +113,8 @@ export class AdminPeriodiciteComponent implements OnInit {
       height: '600px',
       width: '720px',
       data: {
-        periodicite: periodiciteUpdate
+        periodicite: periodiciteUpdate,
+        typeCategorieList : this.typeCategorieList
       },
     });
 

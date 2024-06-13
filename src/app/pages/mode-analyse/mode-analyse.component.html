@@ -35,13 +35,13 @@
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-result>
-                                    <tr [ngClass]="{'row-accessories': result.uop > 0}">
+                                    <tr [ngClass]="{'row-accessories': result.uop === 0}">
                                         <td>{{result.categorie}}</td>
                                         <td>{{result.sousCategorie}}</td>
                                         <td>{{result.operation}}</td>
                                         <td>{{result.sousOperation}}</td>
                                         <td>
-                                            <div [ngClass]="{'outofstock':result.uop === 0, 'lowstock': (result.uop > 0 && result.uop < 10),'instock': result.uop > 10}">
+                                            <div [ngClass]="{'outofuop':result.uop === 0, 'inuop': result.uop > 0}">
                                                 {{result.uop}}
                                             </div>
                                         </td>

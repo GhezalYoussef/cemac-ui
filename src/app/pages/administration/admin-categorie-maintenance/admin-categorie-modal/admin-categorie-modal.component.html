@@ -71,17 +71,30 @@
                             </div>
                         </div>
                         <div class="grid">
-                            <div class="col-12 lg:col-12">
+                            <div class="col-12 lg:col-10">
                                 <div class="p-inputgroup">
                                     <span class="p-inputgroup-addon">
                                         <label>Categorie Maintenance</label>
                                     </span>
                                     <p-dropdown
+                                            *ngIf="selecetCategorie"
                                             formControlName="categorieMaintenance"
                                             [options]="typeCategorieList"
                                             placeholder="Sélectionner le type de catégorie">
                                     </p-dropdown>
+                                    <input *ngIf="!selecetCategorie"
+                                           placeholder="Saisie la catégorie de la maintenance"
+                                           formControlName="categorieMaintenance"
+                                           type="text"
+                                           pInputText>
                                 </div>
+                            </div>
+                            <div class="col-12 lg:col-2">
+                                <p-toggleButton iconPos="right" onIcon="pi pi-check" offIcon="pi pi-times"
+                                                [style]="{'width':'100%'}" [(ngModel)]="selecetCategorie"
+                                                pTooltip="Demander la saisie manuel de la catégorie de maintenance"
+                                                tooltipPosition="right" [ngModelOptions]="{standalone: true}">
+                                </p-toggleButton>
                             </div>
                         </div>
                         <div class="grid" class="TexAlRight">
