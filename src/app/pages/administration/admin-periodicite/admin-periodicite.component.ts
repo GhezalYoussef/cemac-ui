@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Periodicite} from "../../../models/periodicite.model";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService, SharedModule} from "primeng/api";
@@ -8,16 +8,22 @@ import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
 import {CategorieMaintenanceService} from "../../../services/categorie-maintenance.service";
+import {ExcelService} from "../../../services/excel.service";
+import {FileUploadModule} from "primeng/fileupload";
+import {NgClass, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-admin-periodicite',
   standalone: true,
-  imports: [
-    ButtonModule,
-    PanelModule,
-    SharedModule,
-    TableModule
-  ],
+    imports: [
+        ButtonModule,
+        PanelModule,
+        SharedModule,
+        TableModule,
+        FileUploadModule,
+        NgIf,
+        NgClass
+    ],
   templateUrl: './admin-periodicite.component.html',
   styleUrl: './admin-periodicite.component.scss'
 })
@@ -26,11 +32,15 @@ export class AdminPeriodiciteComponent implements OnInit {
   displayDialog = false;
   periodiciteList : Periodicite[] = [];
   typeCategorieList : string[] = [];
+  selectedFile: File | null = null;
+  @ViewChild('fileInput') fileInputElementRef: ElementRef<HTMLInputElement>;
+
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
               private periodiciteService: PeriodiciteService,
               private categorieMaintenanceService: CategorieMaintenanceService,
-              private confirmationService: ConfirmationService) {
+              private confirmationService: ConfirmationService,
+              private excelService: ExcelService) {
   }
 
 
@@ -105,6 +115,31 @@ export class AdminPeriodiciteComponent implements OnInit {
       }
     });
   }
+
+    importDonnees(event: any): void {
+      console.log('test');
+        if (event.target.files.length > 0) {
+            this.selectedFile = event.target.files[0];
+            this.excelService.importDonnees(this.selectedFile).subscribe({
+                next: (data) => {
+                    this.periodiciteList = data.body;
+                },
+                error: (error) => {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Erreur du Chargement',
+                        detail: error,
+                        key: 'top'
+                    });
+                }
+            });
+        }
+    }
+
+    clearFile() {
+        this.fileInputElementRef.nativeElement.value = ''; // Efface la sélection du fichier
+        this.selectedFile = null;
+    }
 
   showDialog(periodiciteUpdate: Periodicite) {
     this.displayDialog = true;
