@@ -88,4 +88,14 @@
         </p-panel>
     </div>
 </div>
+<p-dialog header="Import" [(visible)]="displayDialog" [modal]="true" styleClass="{{ currentContrast() }}">
+    Configuration de la boîte de dialogue :
+    <ul *ngFor="let message of messageErreurList">
+        <li>{{ message }}</li>
+    </ul>
+
+    <p-footer>
+        <button type="text" (click)="closeDialog()" pButton label="Fermer" class="p-button-secondary"></button>
+    </p-footer>
+</p-dialog>
 

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import {Periodicite} from "../../../models/periodicite.model";
 import {DialogService} from "primeng/dynamicdialog";
 import {ConfirmationService, MessageService, SharedModule} from "primeng/api";
@@ -10,7 +10,9 @@ import {TableModule} from "primeng/table";
 import {CategorieMaintenanceService} from "../../../services/categorie-maintenance.service";
 import {ExcelService} from "../../../services/excel.service";
 import {FileUploadModule} from "primeng/fileupload";
-import {NgClass, NgIf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {DialogModule} from "primeng/dialog";
+import {A11yService} from "@tec/condor/services";
 
 @Component({
   selector: 'app-admin-periodicite',
@@ -22,7 +24,9 @@ import {NgClass, NgIf} from "@angular/common";
         TableModule,
         FileUploadModule,
         NgIf,
-        NgClass
+        NgClass,
+        DialogModule,
+        NgForOf
     ],
   templateUrl: './admin-periodicite.component.html',
   styleUrl: './admin-periodicite.component.scss'
@@ -32,8 +36,10 @@ export class AdminPeriodiciteComponent implements OnInit {
   displayDialog = false;
   periodiciteList : Periodicite[] = [];
   typeCategorieList : string[] = [];
+    messageErreurList : string[] = [];
   selectedFile: File | null = null;
   @ViewChild('fileInput') fileInputElementRef: ElementRef<HTMLInputElement>;
+  currentContrast = inject(A11yService).currentContrast;
 
   constructor(private dialogService: DialogService,
               private messageService: MessageService,
@@ -117,14 +123,29 @@ export class AdminPeriodiciteComponent implements OnInit {
   }
 
     importDonnees(event: any): void {
-      console.log('test');
         if (event.target.files.length > 0) {
             this.selectedFile = event.target.files[0];
             this.excelService.importDonnees(this.selectedFile).subscribe({
                 next: (data) => {
-                    this.periodiciteList = data.body;
+                    console.log(data.body);
+                    if(data.body){
+                        if(data.body.messageErreurList.length !== 0){
+                            this.messageErreurList = [];
+                            this.messageErreurList.push(data.body.messageErreurList[0]);
+                            this.messageErreurList.push(data.body.messageErreurList[1]);
+                            this.messageErreurList.push(data.body.messageErreurList[2]);
+                            this.messageErreurList.push(data.body.messageErreurList[3]);
+                            if(data.body.messageErreurList.length > 4){
+                                this.messageErreurList.push("...");
+                            }
+                            this.messageErreurList.push();
+                            this.displayDialog = true;
+                        }
+                        this.periodiciteList = data.body;
+                    }
                 },
                 error: (error) => {
+                    console.log(error);
                     this.messageService.add({
                         severity: 'error',
                         summary: 'Erreur du Chargement',
@@ -170,6 +191,10 @@ export class AdminPeriodiciteComponent implements OnInit {
               })
         })
   }
+
+    closeDialog() {
+        this.displayDialog = false;
+    }
 
 
 }
