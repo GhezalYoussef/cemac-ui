@@ -13,6 +13,8 @@ import {FileUploadModule} from "primeng/fileupload";
 import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {DialogModule} from "primeng/dialog";
 import {A11yService} from "@tec/condor/services";
+import {StyleClassModule} from "primeng/styleclass";
+import {MessageModule} from "primeng/message";
 
 @Component({
   selector: 'app-admin-periodicite',
@@ -26,7 +28,9 @@ import {A11yService} from "@tec/condor/services";
         NgIf,
         NgClass,
         DialogModule,
-        NgForOf
+        NgForOf,
+        StyleClassModule,
+        MessageModule
     ],
   templateUrl: './admin-periodicite.component.html',
   styleUrl: './admin-periodicite.component.scss'

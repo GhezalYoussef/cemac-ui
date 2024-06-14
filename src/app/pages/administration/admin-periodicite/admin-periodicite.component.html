@@ -1,17 +1,16 @@
 <div class="grid">
     <div class="col-12 lg:col-12">
         <p-panel header="Liste des périodicités">
-            <div class="grid">
-                <div class="col-12 lg:col-12 TexAlRight">
+            <div class="grid TexAlRight">
+                <div class="col-12 lg:col-12">
                     <div class="p-inputgroup">
-                        <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
-                        <p-button label="Importer" icon="pi pi-download" styleClass="p-button-info" (onClick)="fileInput.click()">
-                        </p-button>
-                        <input type="file" #fileInput (change)="importDonnees($event)" [ngClass]="{'hidden': true}">
-                        <span *ngIf="selectedFile" class="p-inputgroup-addon">
-                            <label>{{selectedFile.name}}</label>
-                        </span>
-                        <p-button *ngIf="selectedFile" styleClass="p-button-danger" icon="pi pi-times" (onClick)="clearFile()"></p-button>
+                            <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"/>
+                            <p-button label="Importer" icon="pi pi-download" styleClass="p-button-info" (onClick)="fileInput.click()"/>
+                            <input type="file" #fileInput (change)="importDonnees($event)" [ngClass]="{'hidden': true}">
+                            <span *ngIf="selectedFile" class="p-inputgroup-addon">
+                                <label>{{selectedFile.name}}</label>
+                            </span>
+                            <p-button *ngIf="selectedFile" styleClass="p-button-danger" icon="pi pi-times" (onClick)="clearFile()"/>
                     </div>
                 </div>
             </div>
@@ -88,12 +87,12 @@
         </p-panel>
     </div>
 </div>
-<p-dialog header="Import" [(visible)]="displayDialog" [modal]="true" styleClass="{{ currentContrast() }}">
-    Configuration de la boîte de dialogue :
+<p-dialog header="Corriger les erreurs d'importation" [(visible)]="displayDialog" [modal]="true" styleClass="{{ currentContrast() }}">
     <ul *ngFor="let message of messageErreurList">
-        <li>{{ message }}</li>
+        <li>
+            <p-message severity="error" text="{{message}}"/>
+        </li>
     </ul>
-
     <p-footer>
         <button type="text" (click)="closeDialog()" pButton label="Fermer" class="p-button-secondary"></button>
     </p-footer>
