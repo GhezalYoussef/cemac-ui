@@ -67,6 +67,7 @@
                                     </span>
                                     <p-dropdown [options]="typeLigneList"
                                                 formControlName="typeLigne"
+                                                appendTo="body"
                                                 placeholder="Sélectionner le type de la ligne"
                                                 [panelStyle]="{minWidth:'14em'}"
                                                 emptyFilterMessage="Aucune donnée trouvée.">
@@ -80,6 +81,7 @@
                                     </span>
                                     <p-dropdown [options]="tensionList"
                                                 formControlName="tension"
+                                                appendTo="body"
                                                 placeholder="Sélectionner le type de tension"
                                                 [panelStyle]="{minWidth:'14em'}"
                                                 emptyFilterMessage="Aucune donnée trouvée.">
@@ -95,6 +97,7 @@
                                     </span>
                                     <p-dropdown [options]="typeCategorieList"
                                                 formControlName="categorieMaintenance"
+                                                appendTo="body"
                                                 placeholder="Sélectionner le type de la catégorie de maintenance"
                                                 [panelStyle]="{minWidth:'14em'}"
                                                 emptyFilterMessage="Aucune donnée trouvée.">
@@ -109,6 +112,7 @@
                                     </span>
                                     <p-dropdown [options]="uniteList"
                                                 formControlName="unit"
+                                                appendTo="body"
                                                 placeholder="Sélectionner l'unité"
                                                 [panelStyle]="{minWidth:'14em'}"
                                                 emptyFilterMessage="Aucune donnée trouvée.">
@@ -134,10 +138,10 @@
                         <div class="grid" class="TexAlRight">
                             <p-button label="Sauvegarder"
                                       (onClick)="onSubmit()"
-                                      [disabled]="!formPeriodicite.valid"></p-button>
+                                      [disabled]="!formPeriodicite.valid"/>
                             <p-button label="Annuler"
                                       styleClass="p-button-secondary"
-                                      (onClick)="cancel()"></p-button>
+                                      (onClick)="cancel()"/>
                         </div>
                     </p-panel>
                 </div>

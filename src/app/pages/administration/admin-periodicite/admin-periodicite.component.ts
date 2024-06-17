@@ -40,7 +40,7 @@ export class AdminPeriodiciteComponent implements OnInit {
   displayDialog = false;
   periodiciteList : Periodicite[] = [];
   typeCategorieList : string[] = [];
-    messageErreurList : string[] = [];
+  messageErreurList : string[] = [];
   selectedFile: File | null = null;
   @ViewChild('fileInput') fileInputElementRef: ElementRef<HTMLInputElement>;
   currentContrast = inject(A11yService).currentContrast;
@@ -126,48 +126,60 @@ export class AdminPeriodiciteComponent implements OnInit {
     });
   }
 
-    importDonnees(event: any): void {
-        if (event.target.files.length > 0) {
-            this.selectedFile = event.target.files[0];
-            this.excelService.importDonnees(this.selectedFile).subscribe({
-                next: (data) => {
-                    console.log(data.body);
-                    if(data.body){
-                        if(data.body.messageErreurList.length !== 0){
-                            this.messageErreurList = [];
-                            this.messageErreurList.push(data.body.messageErreurList[0]);
-                            this.messageErreurList.push(data.body.messageErreurList[1]);
-                            this.messageErreurList.push(data.body.messageErreurList[2]);
-                            this.messageErreurList.push(data.body.messageErreurList[3]);
-                            if(data.body.messageErreurList.length > 4){
-                                this.messageErreurList.push("...");
-                            }
-                            this.messageErreurList.push();
-                            this.displayDialog = true;
-                        }
-                        this.periodiciteList = data.body;
-                    }
-                },
-                error: (error) => {
-                    console.log(error);
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Erreur du Chargement',
-                        detail: error,
-                        key: 'top'
-                    });
-                }
-            });
-        }
-    }
+  onAddAll(){
+      this.confirmationService.confirm({
+          message: `Voulez-vous vraiment modifier toute la liste des périodes ? Cela écrasera toute l'ancienne liste et en créera une nouvelle !`,
+          header: `Confirmation de la modification`,
+          icon: 'pi pi-info-circle',
+          accept: () => {
+              this.addAll();
+          }
+      });
+  }
 
-    clearFile() {
-        this.fileInputElementRef.nativeElement.value = ''; // Efface la sélection du fichier
-        this.selectedFile = null;
+  importDonnees(event: any): void {
+    if (event.target.files.length > 0) {
+        this.selectedFile = event.target.files[0];
+        this.excelService.importDonnees(this.selectedFile).subscribe({
+            next: (data) => {
+                console.log(data.body);
+                if(data.body){
+                    if(data.body.messageErreurList.length !== 0){
+                        this.messageErreurList = [];
+                        this.messageErreurList.push(data.body.messageErreurList[0]);
+                        this.messageErreurList.push(data.body.messageErreurList[1]);
+                        this.messageErreurList.push(data.body.messageErreurList[2]);
+                        this.messageErreurList.push(data.body.messageErreurList[3]);
+                        if(data.body.messageErreurList.length > 4){
+                            this.messageErreurList.push("...");
+                        }
+                        this.messageErreurList.push();
+                        this.displayDialog = true;
+                    }
+                    if(data.body.periodiciteList.length !== 0) {
+                        this.periodiciteList = data.body.periodiciteList;
+                    }
+                }
+            },
+            error: (error) => {
+                console.log(error);
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Erreur du Chargement',
+                    detail: error,
+                    key: 'top'
+                });
+            }
+        });
     }
+  }
+
+  clearFile() {
+    this.fileInputElementRef.nativeElement.value = '';
+    this.selectedFile = null;
+  }
 
   showDialog(periodiciteUpdate: Periodicite) {
-    this.displayDialog = true;
     const ref = this.dialogService.open(AdminPeriodiciteModalComponent, {
       header: 'Ajouter des références',
       height: '600px',
@@ -196,9 +208,32 @@ export class AdminPeriodiciteComponent implements OnInit {
         })
   }
 
-    closeDialog() {
-        this.displayDialog = false;
-    }
+  closeDialog() {
+    this.displayDialog = false;
+  }
 
+  addAll(){
+    this.periodiciteService.addAll(this.periodiciteList).subscribe(
+        (result) => {
+            if (result) {
+                this.messageService.add(
+                    {
+                        severity: 'success',
+                        summary: 'Ajouter',
+                        detail: 'Mise à jour terminée avec succès.',
+                        key: 'top'
+                    });
+            }
+        },
+        () => {
+            this.messageService.add(
+                {
+                    severity: 'error',
+                    summary: 'Ajouter',
+                    detail: 'Il y a eu une erreur lors de la mise à jour !',
+                    key: 'top'
+                });
+        });
+  }
 
 }

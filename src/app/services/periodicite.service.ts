@@ -30,4 +30,12 @@ export class PeriodiciteService {
         };
         return this.http.post<Periodicite>(url, periodicite, httpOptions);
     }
+
+    addAll(periodiciteList: Periodicite[]) {
+        const url = `${this.serverUrl}/api/v1/periodicite/update-periodicite-list`;
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+        return this.http.post<Periodicite[]>(url, periodiciteList, httpOptions);
+    }
 }
