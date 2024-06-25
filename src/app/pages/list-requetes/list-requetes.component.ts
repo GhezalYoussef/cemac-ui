@@ -11,25 +11,31 @@ import {TableModule} from "primeng/table";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {MessageModule} from "primeng/message";
 import {ToastModule} from "primeng/toast";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-list-requetes',
   standalone: true,
-  imports: [
-    TemplateModule,
-    PanelModule,
-    ButtonModule,
-    TableModule,
-    ConfirmDialogModule,
-    MessageModule,
-    ToastModule
-  ],
+    imports: [
+        TemplateModule,
+        PanelModule,
+        ButtonModule,
+        TableModule,
+        ConfirmDialogModule,
+        MessageModule,
+        ToastModule,
+        ReactiveFormsModule,
+        NgForOf,
+        NgIf
+    ],
   templateUrl: './list-requetes.component.html',
   styleUrl: './list-requetes.component.scss'
 })
 export class ListRequetesComponent {
 
   public requeteList:Requete[];
+  public tableSelectedRequetes:Requete[] = [];
 
   constructor(
       private titleService: Title,
@@ -51,7 +57,7 @@ export class ListRequetesComponent {
           });
           // this.requeteList = this.filterListRQByUtilisateur(res);
           this.requeteList = res;
-        },error => {
+        },() => {
           this.messageService.add({
             severity: 'error',
             summary: 'Charger',
@@ -79,6 +85,10 @@ export class ListRequetesComponent {
     this.navigationService.navigationToAnalyseRequete(requete);
   }
 
+  onClickCompare(){
+      this.navigationService.navigationToCompareRequetes(this.tableSelectedRequetes);
+  }
+
   public onClickAdd(){
     this.navigationService.navigationToAddRequete();
   }
@@ -90,7 +100,7 @@ export class ListRequetesComponent {
       icon: 'pi pi-info-circle',
       accept: () => {
         this.requeteService.suppressionRequete(requete.id).subscribe(
-            res => {
+            () => {
               this.requeteList = this.requeteList.filter((rq) => requete.id !== rq.id);
               this.messageService.add({
                 severity: 'success',
@@ -98,7 +108,7 @@ export class ListRequetesComponent {
                 detail: `Requete supprimée`,
                 key: 'top'
               });
-            }, error => {
+            }, () => {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Supprimer',

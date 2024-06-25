@@ -4,7 +4,10 @@
         <p-panel [showHeader]="false">
             <div class="grid" class="TexAlRight spaced">
                 <div class="col-12 lg:col-12">
-                    <p-button label="Nouvelle étude" icon="pi pi-plus" (onClick)="onClickAdd()"></p-button>
+                    <span class="p-buttonset">
+                        <p-button label="Nouvelle étude" icon="pi pi-plus" (onClick)="onClickAdd()"></p-button>
+                        <p-button label="Comparer" icon="pi pi-tags" [disabled]="tableSelectedRequetes.length !== 2" (onClick)="onClickCompare()"></p-button>
+                    </span>
                 </div>
             </div>
             <div class="grid">
@@ -15,10 +18,14 @@
                                  [paginator]="true"
                                  [rows]="10"
                                  [rowsPerPageOptions]="[5,10,20]"
+                                 [(selection)]="tableSelectedRequetes"
+                                 selectionMode="multiple"
                                  styleClass="p-datatable-gridlines"
                                  responsiveLayout="scroll">
                             <ng-template pTemplate="header">
                                 <tr>
+                                    <th class="ui-p-1" style="width: 3em">
+                                    </th>
                                     <th pSortableColumn="liblleVG">
                                         Libellé
                                         <p-columnFilter type="text" field="liblleVG" display="menu"></p-columnFilter>
@@ -39,6 +46,9 @@
                             </ng-template>
                             <ng-template let-requete pTemplate="body">
                                 <tr>
+                                    <td headers="selection" class="ui-p-1">
+                                        <p-tableCheckbox [value]="requete"></p-tableCheckbox>
+                                    </td>
                                     <td>
                                         <div class="cell-inner">{{requete.requeteRef}}</div>
                                     </td>

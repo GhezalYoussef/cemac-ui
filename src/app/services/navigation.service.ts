@@ -30,6 +30,12 @@ export class NavigationService{
         this.router.navigateByUrl(url);
     }
 
+    public navigationToCompareRequetes(requeteList: Requete[]){
+        const url= `/analyse`;
+        this.sharedSrvice.setRequeteList(requeteList);
+        this.router.navigateByUrl(url);
+    }
+
     public navigateToAccueil(){
         const url = `/accueil`;
         this.router.navigateByUrl(url);
