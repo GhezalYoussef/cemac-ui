@@ -9,8 +9,8 @@ import {ToggleButtonModule} from "primeng/togglebutton";
 import {ButtonModule} from "primeng/button";
 import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {DatePipe, DecimalPipe, NgClass, NgForOf} from "@angular/common";
+import {MessageService} from "primeng/api";
+import {DatePipe, DecimalPipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {InputTextModule} from "primeng/inputtext";
 import {SharedService} from "../../services/shared.service";
 import {mergeMap} from "rxjs";
@@ -22,6 +22,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {MessageModule} from "primeng/message";
 import {ToastModule} from "primeng/toast";
 import {Title} from "@angular/platform-browser";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 
 @Component({
   selector: 'app-mode-analyse',
@@ -45,44 +46,76 @@ import {Title} from "@angular/platform-browser";
         MessageModule,
         ToastModule,
         DecimalPipe,
-        NgClass
+        NgClass,
+        NgIf
     ],
   templateUrl: './mode-analyse.component.html',
   styleUrl: './mode-analyse.component.scss'
 })
 export class ModeAnalyseComponent implements OnInit {
 
-  public requete ?: Requete;
-  public analyseResultList ?: AnalyseResult[];
-  public selectedResult ?: AnalyseResult;
-  public RQDate = new Date();
+  public requete_1 ?: Requete;
+  public requete_2 ?: Requete;
+  public analyseResultList_1 ?: AnalyseResult[];
+  public analyseResultList_2 ?: AnalyseResult[];
+  public selectedResult_1 ?: AnalyseResult;
+  public selectedResult_2 ?: AnalyseResult;
+  public RQDate_1 = new Date();
+  public RQDate_2 = new Date();
+  public typeAnalyse : boolean = false;
+
 
 
   constructor(private titleService: Title,
               private requeteService:RequeteService,
               private messageService: MessageService,
-              private sharedService:SharedService) {
+              private sharedService:SharedService,
+              private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
       this.titleService.setTitle('Mode analyse');
-      this.sharedService.requete$.pipe(
-          mergeMap(
-              requete => {
-                  return this.requeteService.analyseRequete(requete);
-              })
-      ).subscribe(res =>{
-          this.requete = res;
-          this.analyseResultList = res.analyseResultList;
-      },() => {
-          this.messageService.add(
-              {
-                  severity: 'error',
-                  summary: 'Analyse',
-                  detail: `Erreur lors de l'analyse.`,
-                  key: 'top'
-              });
+      this.route.paramMap.subscribe((params: ParamMap) => {
+           if(params.get('type') === "1") {
+               this.sharedService.requete$.pipe(
+                   mergeMap(
+                       requete => {
+                           return this.requeteService.analyseRequete(requete);
+                       })
+               ).subscribe(res =>{
+                   this.requete_1 = res;
+                   this.analyseResultList_1 = res.analyseResultList;
+               },() => {
+                   this.messageService.add(
+                       {
+                           severity: 'error',
+                           summary: 'Analyse',
+                           detail: `Erreur lors de l'analyse de la requete.`,
+                           key: 'top'
+                       });
+               });
+           } else {
+               this.sharedService.requeteList$.pipe(
+                   mergeMap(
+                       requeteList => {
+                           return this.requeteService.analyseRequeteList(requeteList);
+                       })
+               ).subscribe(res =>{
+                   this.requete_1 = res[0];
+                   this.requete_2 = res[1];
+                   this.analyseResultList_1 = res[0].analyseResultList;
+                   this.analyseResultList_2 = res[1].analyseResultList;
+               },() => {
+                   this.messageService.add(
+                       {
+                           severity: 'error',
+                           summary: 'Analyse',
+                           detail: `Erreur lors de l'analyse de la liste des requetes.`,
+                           key: 'top'
+                       });
+               });
+           }
       });
   }
 

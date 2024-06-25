@@ -25,13 +25,13 @@ export class NavigationService{
     }
 
     public navigationToAnalyseRequete(requete: Requete){
-        const url= `/analyse`;
+        const url= `/analyse/1`;
         this.sharedSrvice.setRequete(requete);
         this.router.navigateByUrl(url);
     }
 
     public navigationToCompareRequetes(requeteList: Requete[]){
-        const url= `/analyse`;
+        const url= `/analyse/2`;
         this.sharedSrvice.setRequeteList(requeteList);
         this.router.navigateByUrl(url);
     }

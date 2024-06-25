@@ -18,7 +18,7 @@ export const APP_ROUTES: Routes = [
 
   { path: 'requetes', component : ListRequetesComponent },
   { path: 'saisie', component : ModeSaisieComponent},
-  { path: 'analyse', component : ModeAnalyseComponent},
+  { path: 'analyse/:type', component : ModeAnalyseComponent},
   { path: 'administration', component : AdministrationComponent },
   { path: 'home', loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent)},
 

@@ -35,4 +35,8 @@ export class RequeteService {
     public analyseRequete(requete:Requete){
         return this.http.post<Requete>(`${this.serverUrl}/api/v1/requete/analyse`,requete)
     }
+
+    public analyseRequeteList(requeteList:Requete[]){
+        return this.http.post<Requete[]>(`${this.serverUrl}/api/v1/requete/list/analyse`,requeteList)
+    }
 }

@@ -1,27 +1,96 @@
 <cd-pageTitle keyValue="pageTitle.analyse" styleClass="sncf-default-color" ></cd-pageTitle>
 <div class="grid">
     <div class="col-12 lg:col-12">
-        <p-panel [showHeader]="false">
+        <p-panel [showHeader]="false" *ngIf="!typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
                     <div class="col-12 lg:col-4">
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
-                                {{requete ?'REF_' + requete.requeteRef : 'REF'}}
+                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
                             </span>
                             <span class="p-inputgroup-addon">
-                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
+                                ÉTUDE DU : {{ RQDate_1 | date: 'mediumDate'}} A {{RQDate_1 | date:'mediumTime'}}
                             </span>
                         </div>
+                    </div>
+                    <div class="col-12 lg:col-8 TexAlRight" *ngIf="requete_2">
+                        <p-toggleButton
+                                onLabel="Etude 1"
+                                offLabel="Etude 2"
+                                onIcon="pi pi-check"
+                                offIcon="pi pi-times"
+                                [(ngModel)]="typeAnalyse"/>
                     </div>
                 </div>
                 <div class="grid">
                     <div class="col-12 lg:col-12">
                         <div class="pastille">
-                            <p-table [value]="analyseResultList"
+                            <p-table [value]="analyseResultList_1"
                                      sortMode="multiple"
                                      selectionMode="single"
-                                     [(selection)]="selectedResult"
+                                     [(selection)]="selectedResult_1"
+                                     responsiveLayout="scroll"
+                                     dataKey="refResult">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>CATÉGORIE</th>
+                                        <th>SOUS CATÉGORIE</th>
+                                        <th>OPÉRATION</th>
+                                        <th>SOUS OPÉRATION</th>
+                                        <th>UOP</th>
+                                        <th>COUT</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-result>
+                                    <tr [ngClass]="{'row-accessories': result.uop === 0}">
+                                        <td>{{result.categorie}}</td>
+                                        <td>{{result.sousCategorie}}</td>
+                                        <td>{{result.operation}}</td>
+                                        <td>{{result.sousOperation}}</td>
+                                        <td>
+                                            <div [ngClass]="{'outofuop':result.uop === 0, 'inuop': result.uop > 0}">
+                                                {{result.uop}}
+                                            </div>
+                                        </td>
+                                        <td>{{result.cout}}</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </p-panel>
+        </p-panel>
+        <p-panel [showHeader]="false" *ngIf="typeAnalyse">
+            <p-panel header="Liste des resultats">
+                <div class="grid">
+                    <div class="col-12 lg:col-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                {{requete_2 ?'REF_' + requete_2.requeteRef : 'REF'}}
+                            </span>
+                            <span class="p-inputgroup-addon">
+                                ÉTUDE DU : {{ RQDate_2 | date: 'mediumDate'}} A {{RQDate_2 | date:'mediumTime'}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 lg:col-8 TexAlRight">
+                        <p-toggleButton
+                                onLabel="Etude 1"
+                                offLabel="Etude 2"
+                                onIcon="pi pi-check"
+                                offIcon="pi pi-times"
+                                [(ngModel)]="typeAnalyse"/>
+                    </div>
+                </div>
+                <div class="grid">
+                    <div class="col-12 lg:col-12">
+                        <div class="pastille">
+                            <p-table [value]="analyseResultList_2"
+                                     sortMode="multiple"
+                                     selectionMode="single"
+                                     [(selection)]="selectedResult_2"
                                      responsiveLayout="scroll"
                                      dataKey="refResult">
                                 <ng-template pTemplate="header">
