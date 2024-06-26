@@ -57,10 +57,8 @@ export class ModeAnalyseComponent implements OnInit {
 
   public requete_1 ?: Requete;
   public requete_2 ?: Requete;
-  public analyseResultList_1 ?: AnalyseResult[] = [];
-  public analyseResultList_2 ?: AnalyseResultCompare[] = [];
-  public selectedResult_1 ?: AnalyseResult;
-  public selectedResult_2 ?: AnalyseResult;
+  public analyseResultList ?: AnalyseResult[] = [];
+  public analyseResultCompareList ?: AnalyseResultCompare[] = [];
   public RQDate = new Date();
   public typeAnalyse : boolean = false;
 
@@ -85,7 +83,7 @@ export class ModeAnalyseComponent implements OnInit {
                        })
                ).subscribe(res =>{
                    this.requete_1 = res;
-                   this.analyseResultList_1 = res.analyseResultList;
+                   this.analyseResultList = res.analyseResultList;
                },() => {
                    this.messageService.add(
                        {
@@ -105,9 +103,9 @@ export class ModeAnalyseComponent implements OnInit {
                ).subscribe(res =>{
                    this.requete_1 = res[0];
                    this.requete_2 = res[1];
-                   this.analyseResultList_1 = res[0].analyseResultList;
+                   this.analyseResultList = res[0].analyseResultList;
                    for (let i = 0; i < res[1].analyseResultList.length; i++) {
-                       this.analyseResultList_2.push({
+                       this.analyseResultCompareList.push({
                            id : res[1].analyseResultList[i].id,
                            requete : res[1].analyseResultList[i].requete,
                            refResult : res[1].analyseResultList[i].refResult,

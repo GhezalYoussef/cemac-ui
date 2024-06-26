@@ -5,26 +5,25 @@
             <p-panel header="Liste des resultats">
                 <div class="grid">
                     <div class="col-12 lg:col-12">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
-                            </span>
-                            <span class="p-inputgroup-addon">
-                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col-12 lg:col-12">
                         <div class="pastille">
-                            <p-table [value]="analyseResultList_1"
+                            <p-table [value]="analyseResultList"
                                      sortMode="multiple"
                                      selectionMode="single"
-                                     [(selection)]="selectedResult_1"
                                      responsiveLayout="scroll"
                                      dataKey="refResult">
                                 <ng-template pTemplate="header">
+                                    <tr>
+                                        <th colspan="4">
+                                            <span class="p-inputgroup-addon">
+                                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
+                                            </span>
+                                        </th>
+                                        <th colspan="2">
+                                            <span class="p-inputgroup-addon">
+                                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
+                                            </span>
+                                        </th>
+                                    </tr>
                                     <tr>
                                         <th>CATÉGORIE</th>
                                         <th>SOUS CATÉGORIE</th>
@@ -57,30 +56,31 @@
         <p-panel [showHeader]="false" *ngIf="typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
-                    <div class="col-12 lg:col-12 TexAlRight">
-                        <div class="p-inputgroup">
-                            <span class="p-inputgroup-addon">
-                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
-                            </span>
-                            <span class="p-inputgroup-addon">
-                                {{requete_2 ?'REF_' + requete_2.requeteRef : 'REF'}}
-                            </span>
-                            <span class="p-inputgroup-addon">
-                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
                     <div class="col-12 lg:col-12">
                         <div class="pastille">
-                            <p-table [value]="analyseResultList_2"
+                            <p-table [value]="analyseResultCompareList"
                                      sortMode="multiple"
                                      selectionMode="single"
-                                     [(selection)]="selectedResult_2"
                                      responsiveLayout="scroll"
                                      dataKey="refResult">
                                 <ng-template pTemplate="header">
+                                    <tr>
+                                        <th colspan="4">
+                                            <span class="p-inputgroup-addon">
+                                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
+                                            </span>
+                                        </th>
+                                        <th colspan="2">
+                                            <span class="p-inputgroup-addon">
+                                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
+                                            </span>
+                                        </th>
+                                        <th colspan="2">
+                                            <span class="p-inputgroup-addon">
+                                                {{requete_2 ?'REF_' + requete_2.requeteRef : 'REF'}}
+                                            </span>
+                                        </th>
+                                    </tr>
                                     <tr>
                                         <th>CATÉGORIE</th>
                                         <th>SOUS CATÉGORIE</th>
