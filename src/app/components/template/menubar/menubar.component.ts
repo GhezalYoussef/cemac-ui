@@ -38,7 +38,7 @@ export class AppMenubarComponent extends CdBaseMenubarComponent implements OnIni
     {
       label: "Analyse",
       icon: "pi pi-tag",
-      routerLink: "analyse",
+      routerLink: "analyse/1",
     },
     {
       label: "Administration",
