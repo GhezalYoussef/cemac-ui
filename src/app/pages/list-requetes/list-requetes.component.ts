@@ -56,7 +56,13 @@ export class ListRequetesComponent {
             key:'top'
           });
           // this.requeteList = this.filterListRQByUtilisateur(res);
+
           this.requeteList = res;
+          if(this.requeteList ? this.requeteList.length > 0 : false){
+              this.requeteList = this.requeteList.length > 1 ? res.sort((a, b) => {
+                  return b.id - a.id
+              }) : res;
+          }
         },() => {
           this.messageService.add({
             severity: 'error',
