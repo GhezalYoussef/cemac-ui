@@ -61,8 +61,7 @@ export class ModeAnalyseComponent implements OnInit {
   public analyseResultList_2 ?: AnalyseResultCompare[] = [];
   public selectedResult_1 ?: AnalyseResult;
   public selectedResult_2 ?: AnalyseResult;
-  public RQDate_1 = new Date();
-  public RQDate_2 = new Date();
+  public RQDate = new Date();
   public typeAnalyse : boolean = false;
 
 
@@ -97,6 +96,7 @@ export class ModeAnalyseComponent implements OnInit {
                        });
                });
            } else {
+               this.typeAnalyse =  true;
                this.sharedService.requeteList$.pipe(
                    mergeMap(
                        requeteList => {

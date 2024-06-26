@@ -4,23 +4,15 @@
         <p-panel [showHeader]="false" *ngIf="!typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
-                    <div class="col-12 lg:col-10">
+                    <div class="col-12 lg:col-12">
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
                                 {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
                             </span>
                             <span class="p-inputgroup-addon">
-                                ÉTUDE DU : {{ RQDate_1 | date: 'mediumDate'}} A {{RQDate_1 | date:'mediumTime'}}
+                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
                             </span>
                         </div>
-                    </div>
-                    <div class="col-12 lg:col-2 TexAlRight" *ngIf="requete_2">
-                        <p-toggleButton
-                                onLabel="Comparer"
-                                offLabel="Comparer"
-                                onIcon="pi pi-check"
-                                offIcon="pi pi-times"
-                                [(ngModel)]="typeAnalyse"/>
                     </div>
                 </div>
                 <div class="grid">
@@ -65,7 +57,7 @@
         <p-panel [showHeader]="false" *ngIf="typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
-                    <div class="col-12 lg:col-10">
+                    <div class="col-12 lg:col-12 TexAlRight">
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
                                 {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
@@ -74,17 +66,9 @@
                                 {{requete_2 ?'REF_' + requete_2.requeteRef : 'REF'}}
                             </span>
                             <span class="p-inputgroup-addon">
-                                ÉTUDE DU : {{ RQDate_2 | date: 'mediumDate'}} A {{RQDate_2 | date:'mediumTime'}}
+                                ÉTUDE DU : {{ RQDate | date: 'mediumDate'}} A {{RQDate | date:'mediumTime'}}
                             </span>
                         </div>
-                    </div>
-                    <div class="col-12 lg:col-2 TexAlRight">
-                        <p-toggleButton
-                                onLabel="Comparer"
-                                offLabel="Comparer"
-                                onIcon="pi pi-check"
-                                offIcon="pi pi-times"
-                                [(ngModel)]="typeAnalyse"/>
                     </div>
                 </div>
                 <div class="grid">
