@@ -23,6 +23,7 @@ import {MessageModule} from "primeng/message";
 import {ToastModule} from "primeng/toast";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, ParamMap} from "@angular/router";
+import {AnalyseResultCompare} from "../../models/analyse-result-compare.model";
 
 @Component({
   selector: 'app-mode-analyse',
@@ -56,8 +57,8 @@ export class ModeAnalyseComponent implements OnInit {
 
   public requete_1 ?: Requete;
   public requete_2 ?: Requete;
-  public analyseResultList_1 ?: AnalyseResult[];
-  public analyseResultList_2 ?: AnalyseResult[];
+  public analyseResultList_1 ?: AnalyseResult[] = [];
+  public analyseResultList_2 ?: AnalyseResultCompare[] = [];
   public selectedResult_1 ?: AnalyseResult;
   public selectedResult_2 ?: AnalyseResult;
   public RQDate_1 = new Date();
@@ -105,7 +106,22 @@ export class ModeAnalyseComponent implements OnInit {
                    this.requete_1 = res[0];
                    this.requete_2 = res[1];
                    this.analyseResultList_1 = res[0].analyseResultList;
-                   this.analyseResultList_2 = res[1].analyseResultList;
+                   for (let i = 0; i < res[1].analyseResultList.length; i++) {
+                       this.analyseResultList_2.push({
+                           id : res[1].analyseResultList[i].id,
+                           requete : res[1].analyseResultList[i].requete,
+                           refResult : res[1].analyseResultList[i].refResult,
+                           categorie:res[1].analyseResultList[i].categorie,
+                           sousCategorie:res[1].analyseResultList[i].sousCategorie,
+                           operation:res[1].analyseResultList[i].operation,
+                           sousOperation:res[1].analyseResultList[i].sousOperation,
+                           categorieMaintenance:res[1].analyseResultList[i].categorieMaintenance,
+                           uop:res[1].analyseResultList[i].uop,
+                           cout:res[1].analyseResultList[i].cout,
+                           uop_2:res[0].analyseResultList[i].uop,
+                           cout_2:res[0].analyseResultList[i].cout
+                       });
+                   }
                },() => {
                    this.messageService.add(
                        {

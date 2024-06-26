@@ -4,7 +4,7 @@
         <p-panel [showHeader]="false" *ngIf="!typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
-                    <div class="col-12 lg:col-4">
+                    <div class="col-12 lg:col-10">
                         <div class="p-inputgroup">
                             <span class="p-inputgroup-addon">
                                 {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
@@ -14,10 +14,10 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-12 lg:col-8 TexAlRight" *ngIf="requete_2">
+                    <div class="col-12 lg:col-2 TexAlRight" *ngIf="requete_2">
                         <p-toggleButton
-                                onLabel="Etude 1"
-                                offLabel="Etude 2"
+                                onLabel="Comparer"
+                                offLabel="Comparer"
                                 onIcon="pi pi-check"
                                 offIcon="pi pi-times"
                                 [(ngModel)]="typeAnalyse"/>
@@ -50,7 +50,7 @@
                                         <td>{{result.sousOperation}}</td>
                                         <td>
                                             <div [ngClass]="{'outofuop':result.uop === 0, 'inuop': result.uop > 0}">
-                                                {{result.uop}}
+                                                {{result.uop | number:'1.2-2'}}
                                             </div>
                                         </td>
                                         <td>{{result.cout}}</td>
@@ -65,8 +65,11 @@
         <p-panel [showHeader]="false" *ngIf="typeAnalyse">
             <p-panel header="Liste des resultats">
                 <div class="grid">
-                    <div class="col-12 lg:col-4">
+                    <div class="col-12 lg:col-10">
                         <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                {{requete_1 ?'REF_' + requete_1.requeteRef : 'REF'}}
+                            </span>
                             <span class="p-inputgroup-addon">
                                 {{requete_2 ?'REF_' + requete_2.requeteRef : 'REF'}}
                             </span>
@@ -75,10 +78,10 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-12 lg:col-8 TexAlRight">
+                    <div class="col-12 lg:col-2 TexAlRight">
                         <p-toggleButton
-                                onLabel="Etude 1"
-                                offLabel="Etude 2"
+                                onLabel="Comparer"
+                                offLabel="Comparer"
                                 onIcon="pi pi-check"
                                 offIcon="pi pi-times"
                                 [(ngModel)]="typeAnalyse"/>
@@ -99,22 +102,30 @@
                                         <th>SOUS CATÉGORIE</th>
                                         <th>OPÉRATION</th>
                                         <th>SOUS OPÉRATION</th>
-                                        <th>UOP</th>
-                                        <th>COUT</th>
+                                        <th>UOP_1</th>
+                                        <th>COUT_1</th>
+                                        <th>UOP_2</th>
+                                        <th>COUT_2</th>
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-result>
-                                    <tr [ngClass]="{'row-accessories': result.uop === 0}">
+                                    <tr [ngClass]="{'row-accessories': result.uop === 0 && result.uop_2 === 0}">
                                         <td>{{result.categorie}}</td>
                                         <td>{{result.sousCategorie}}</td>
                                         <td>{{result.operation}}</td>
                                         <td>{{result.sousOperation}}</td>
                                         <td>
                                             <div [ngClass]="{'outofuop':result.uop === 0, 'inuop': result.uop > 0}">
-                                                {{result.uop}}
+                                                {{ result.uop | number:'1.2-2' }}
                                             </div>
                                         </td>
                                         <td>{{result.cout}}</td>
+                                        <td>
+                                            <div [ngClass]="{'outofuop':result.uop_2 === 0, 'inuop': result.uop_2 > 0}">
+                                                {{result.uop_2 | number:'1.2-2'}}
+                                            </div>
+                                        </td>
+                                        <td>{{result.cout_2}}</td>
                                     </tr>
                                 </ng-template>
                             </p-table>
