@@ -1,9 +1,20 @@
 <div class="grid">
     <div class="col-12 lg:col-12">
         <p-panel header="Liste des caténaire">
-            <div class="grid" class="TexAlRight spaced">
-                <div class="col-12 lg:col-12">
-                    <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"></p-button>
+            <div class="grid TexAlRight">
+                <div class="col-12 lg:col-8">
+                    <div class="p-inputgroup">
+                        <p-button label="Importer" icon="pi pi-download" styleClass="p-button-info" (onClick)="fileInput.click()"/>
+                        <input type="file" #fileInput (change)="importDonnees($event)" [ngClass]="{'hidden': true}">
+                        <span *ngIf="selectedFile" class="p-inputgroup-addon">
+                                <label>{{selectedFile.name}}</label>
+                            </span>
+                        <p-button *ngIf="selectedFile" styleClass="p-button-danger" icon="pi pi-times" (onClick)="clearFile()"/>
+                        <p-button *ngIf="selectedFile" label="Sauvegarder" icon="pi pi-save" (onClick)="onAddAll()"/>
+                    </div>
+                </div>
+                <div class="col-12 lg:col-4">
+                    <p-button label="Ajouter" icon="pi pi-plus" (onClick)="showDialog(undefined)"/>
                 </div>
             </div>
             <div class="grid">

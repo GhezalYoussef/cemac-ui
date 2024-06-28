@@ -3,6 +3,7 @@ import {ConstantService} from "@tec/condor/services";
 import {Observable} from "rxjs";
 import {Catenaire} from "../models/catenaire.model";
 import {Injectable} from "@angular/core";
+import {Periodicite} from "../models/periodicite.model";
 
 @Injectable({
     providedIn: 'root'
@@ -30,5 +31,13 @@ export class CatenaireService {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
         };
         return this.http.post<Catenaire>(url, catenaire, httpOptions);
+    }
+
+    addAll(catenaireList: Catenaire[]) {
+        const url = `${this.serverUrl}/api/v1/catenaire/update-catenaire-list`;
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+        return this.http.post<Periodicite[]>(url, catenaireList, httpOptions);
     }
 }

@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {FamilleCatenaire} from "../models/famille-catenaire.model";
 import {Injectable} from "@angular/core";
 import {Catenaire} from "../models/catenaire.model";
+import {Periodicite} from "../models/periodicite.model";
 @Injectable({
     providedIn: 'root'
 })
@@ -29,6 +30,14 @@ export class FamilleCatenaireService {
             headers: new HttpHeaders({'Content-Type': 'application/json'})
         };
         return this.http.post<Catenaire>(url, familleCatenaire, httpOptions);
+    }
+
+    addAll(familleCatenaireList: FamilleCatenaire[]) {
+        const url = `${this.serverUrl}/api/v1/famille-catenaire/update-famille-catenaire-list`;
+        const httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json'})
+        };
+        return this.http.post<FamilleCatenaire[]>(url, familleCatenaireList, httpOptions);
     }
 
 }
