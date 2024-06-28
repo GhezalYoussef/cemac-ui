@@ -101,8 +101,8 @@ export class ModeAnalyseComponent implements OnInit {
                            return this.requeteService.analyseRequeteList(requeteList);
                        })
                ).subscribe(res =>{
-                   this.requete_1 = res[0];
-                   this.requete_2 = res[1];
+                   this.requete_1 = res[1];
+                   this.requete_2 = res[0];
                    this.analyseResultList = res[0].analyseResultList;
                    for (let i = 0; i < res[1].analyseResultList.length; i++) {
                        this.analyseResultCompareList.push({
